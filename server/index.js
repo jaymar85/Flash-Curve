@@ -5,6 +5,7 @@ const massive = require("massive");
 const session = require("express-session");
 const {CONNECTION_STRING, SERVER_PORT,  SESSION_SECRET} = process.env;
 // Controllers
+const authController = require("./controllers/authController");
 
 app.use(express.json());
 
@@ -23,6 +24,8 @@ app.use(session({
 }))
 
 // Endpoints
+app.post('/auth/register', authController.register);
+// app.post('/auth/login', authController.login);
 
 app.listen(SERVER_PORT, () => {
     console.log(`Server listening on ${SERVER_PORT}`)
