@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import {HashRouter} from "react-router-dom";
-// import routes from "./routes";
+import routes from "./routes";
 import Header from './Components/Header/Header';
 
 class App extends React.Component {
@@ -10,7 +10,8 @@ class App extends React.Component {
     return (
       <HashRouter>
         <div className="App">
-          <Header />
+          <Header/>
+          {routes}
         </div>        
       </HashRouter>
     );

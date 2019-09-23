@@ -1,18 +1,34 @@
+/* Parent */
 .nav {
     width: 100vw;
     height: 10vh;
-    background: skyblue;
+    background: #26384c;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .logo {
-    width: 20vw;
+    width: 30vw;
+}
+
+.loginForm {
+    width: 30vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .link-wrap {
-    width: 20vw;
-    display: flex;
-    justify-content: space-evenly;
+    width: 10vw;  
 }
+
+.links {
+    text-decoration: none;
+    color: white;
+    border: 1px solid #18c4be;
+    border-radius: 5px;
+}
+
+
+
