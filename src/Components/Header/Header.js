@@ -1,68 +1,86 @@
 import React from "react";
-import logo from "../../assets/flash_curve_logo.png";
+import logo from "../../assets/fc_logo.png";
 import "./Header.css";
-import axios from "axios";
-import {Link} from "react-router-dom";
+// import axios from "axios";
+import {Link, withRouter} from "react-router-dom";
+import {connect} from "react-redux";
+import {getUser, logoutUser} from '../../Redux/reducers/userReducer';
 
 class Header extends React.Component {
-    
     constructor() {
         super();
         this.state = {
-            username: '',
-            password: '',
-            email: '', 
-            first_name: '',
-            last_name: ''
         }
     }
-    // Input handlers
-    handleUsernameInput(val) {
-        this.setState({username: val});
-    }
-    handlePasswordInput(val) {
-        this.setState({password: val});
+
+    componentDidMount() {
+        this.props.getUser();
     }
 
-    getUser() {
-
+    handleLogout = () => {
+        this.props.logoutUser();
+        this.props.history.push('/');
     }
-
-    register() {
-        const {username, password, email, first_name, last_name} = this.state;
-        axios   
-            .post('/auth/register', {username, password, email, first_name, last_name})
-            .then(user => {
-                this.setState({username: '', password: '', email: '', first_name: '', last_name: ''});
-            })
-    }
-
-    // logout() {
-    //     axios
-    //         .then(() => )
-    // }
 
     render() {
+        const {firstName} = this.props;
+        // const alias = firstName ? firstName : 'Guest';
         return (            
             <div>
                 <nav className="nav">
                     <div className="logo">
                         <Link to="/"><img src={logo} alt="flash curve"/></Link>
                     </div>
+                    {/* Login Form */}
+                    {this.props.location.pathname !== '/'
+                    ? null 
+                    :
+                    <>
                     <div className="loginForm">
                         <div className="input-wrap">
-                            <input type="text" placeholder="Username"/>
-                            <input type="password" placeholder="Password"/>  
-                        </div>                     
+                            {/* Username */}
+                            <div className="titles">
+                                <p>Username</p>
+                                <p>Password</p>                                        
+                            </div>
+                            {/* Password */}
+                            <div className="inputs">
+                                <input 
+                                type="text" 
+                                placeholder="Username"
+                                // value={username}
+                                onChange={e => this.handleUsernameInput(e.target.value)}/>
+                                <input type="password" 
+                                placeholder="password"
+                                // value={password}
+                                onChange={e => this.handlePasswordInput(e.target.value)}/>
+                            </div>
+                        </div>                            
+                        {/* Login/Registration Button */}                
                         <div className="link-wrap">
                             <Link to="/user" className="links">Log In</Link>
                             <Link to="/register" className="links">Sign Up</Link>
                         </div>
-                    </div>
+                        </div>
+                    </>
+                    }
+                
+                    
+                    {firstName ? <button onClick={this.handleLogout}></button> : null}
                 </nav>
             </div>           
         )
     }
 }
 
-export default Header;
+const mapStateToProps = reduxState => {
+    return {
+        firstName: reduxState.userReducer.firstName
+    }
+}
+
+export default withRouter(connect(mapStateToProps, {
+    getUser,
+    logoutUser
+}
+)(Header));

@@ -1,19 +1,29 @@
 import React from 'react';
 import './App.css';
-import {HashRouter} from "react-router-dom";
-import routes from "./routes";
+import routes from './routes';
 import Header from './Components/Header/Header';
 
 class App extends React.Component {
-  
+  constructor(){
+    super();
+    this.state = {
+      user: {},
+    };
+  }
+
+  updateUser(user) {
+    this.setState({
+      user,
+    });
+  }
+
   render() {
+    const {user} = this.state;
     return (
-      <HashRouter>
-        <div className="App">
-          <Header/>
-          {routes}
-        </div>        
-      </HashRouter>
+      <div className="App">
+        <Header user={user} updateUser={this.updateUser}/>
+        {routes}
+      </div>        
     );
   }
 }

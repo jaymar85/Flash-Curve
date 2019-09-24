@@ -1,5 +1,6 @@
 import React from "react";
 import {Switch, Route} from "react-router-dom";
+// Components
 import Home from "./Components/Home/Home";
 import Register from "./Components/Register/Register";
 import UserLanding from "./Components/UserLanding/UserLanding";
@@ -10,8 +11,11 @@ export default (
     <Switch>
         <Route component={Home} exact path="/" />
         <Route component={Register} path="/register" />
-        <Route component={UserLanding} path="/user"/>
-        <Route component={UserProfile} path="/myprofile" />
-        <Route component={Posts} path="/posts"/>
+        <Route path="/user" render={() => (
+            <UserLanding>
+                <Route component={UserProfile} path="/profile" />
+                <Route component={Posts} path="/posts"/>
+            </UserLanding>
+        )} />
     </Switch>
 );
