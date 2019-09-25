@@ -37,7 +37,8 @@ app.get('/auth/logout', authController.logout);
 // app.get('/api/topic', topicController.getTopic);
 app.post('/api/topic', topicController.addTopic);
 app.delete('/api/topic', topicController.deleteTopic);
-// app.put('/api/topic', topicController.editTopic)
+app.put('/api/topic_name', topicController.editTopicName);
+app.put('/api/topic_description', topicController.editTopicDescription);
 
 // Flash Cards
 app.get('/api/flashcard', cardController.getFlashcard);
