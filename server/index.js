@@ -34,15 +34,15 @@ app.post('/auth/login', authController.login);
 app.get('/auth/logout', authController.logout);
 
 // Card Topics 
-// app.get('/api/topic', topicController.getTopic);
+app.get('/api/topic', topicController.getTopic);
 app.post('/api/topic', topicController.addTopic);
 app.delete('/api/topic', topicController.deleteTopic);
 app.put('/api/topic_name', topicController.editTopicName);
 app.put('/api/topic_description', topicController.editTopicDescription);
 
 // Flash Cards
-app.get('/api/flashcard', cardController.getFlashcard);
-app.post('api/create', cardController.addFlashcard);
+// app.get('/api/flashcard', cardController.getFlashcard);
+// app.post('api/create', cardController.addFlashcard);
 // app.put('/api/flashcard', cardController.editFlashcard);
 // app.delete('/api/flashcard', cardController.deleteFlashcard);
 
