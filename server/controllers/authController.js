@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 module.exports = {
     register: async (req, res) => {
         const {username, password, email, first_name, last_name} = req.body;
-        const db = req.app.get('db') //gets the database instance and runs the sql file getUser
+        const db = req.app.get('db'); //gets the database instance and runs the sql file getUser
         const existingUser = await db.authorization.getUser([username]); //checks results if username is already taken
         if(existingUser[0]) {
             return res.status(409).send("Username taken");

@@ -6,6 +6,7 @@ export default class UserLanding extends Component {
         return (
             <div>
                 User's Page
+                
                 <Link to="/post">Create</Link>
                 <Link to="/myprofile">My Profile</Link>
                 <Link to="/">Log out</Link>
