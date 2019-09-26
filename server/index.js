@@ -41,10 +41,10 @@ app.put('/api/topic_name', topicController.editTopicName);
 app.put('/api/topic_description', topicController.editTopicDescription);
 
 // Flash Cards
-// app.get('/api/flashcard', cardController.getFlashcard);
-// app.post('api/create', cardController.addFlashcard);
-// app.put('/api/flashcard', cardController.editFlashcard);
-// app.delete('/api/flashcard', cardController.deleteFlashcard);
+app.get('/api/flashcard/:id', cardController.getFlashcard);
+app.post('/api/create', cardController.addFlashcard);
+app.put('/api/flashcard', cardController.editFlashcard);
+app.delete('/api/flashcard', cardController.deleteFlashcard);
 
 app.listen(SERVER_PORT, () => {
     console.log(`Server listening on ${SERVER_PORT}`)

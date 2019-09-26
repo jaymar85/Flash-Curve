@@ -12,9 +12,13 @@ module.exports = {
         const {user_id, name, description} = req.body; // values for making a topic
         // const {user_id} = req.session.user;
         const db = req.app.get('db');
-        const add = await db.topic.add_topic([user_id, name, description]).then(topics => {
-            res.status(200).send(add);
-        }).catch(err => {res.status(409).send('Please provide a name')});
+        const add = await db.topic.add_topic([user_id, name, description])  
+            .then(topics => {
+                res.status(200).send(topics);
+            })
+            .catch(err => {
+                res.status(409).send('Please provide a name')
+            });
         // if (!add) {
         //     res.status(409).send('Please provide a name');
         // } 

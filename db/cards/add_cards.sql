@@ -1,2 +1,10 @@
-INSERT INTO cards (card_id, topic_id, description)
-VALUES ($1, $2, $3);
+INSERT INTO cards (topic_id, description)
+VALUES ($2, $3);
+
+SELECT c.topic_id, c.user_id, c.description
+FROM cards c
+INNER JOIN topics t 
+ON c.topic_id = t.topic_id
+INNER JOIN users u
+ON c.user_id = u.user_id
+WHERE t.topic_id = $1;
