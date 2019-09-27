@@ -1,11 +1,12 @@
 import axios from 'axios';
 
 const initialState = {
+    user_id: null,
     username: '',
     password: '',
     email: '',
-    firstName: '',
-    lastName: ''
+    first_name: '',
+    last_name: ''
 }
 
 // Action types
@@ -55,7 +56,10 @@ export default function Reducer(state=initialState, action) {
                 ...state,
                 userId: payload.data.user_id,
                 username: payload.data.username,
-                firstName: payload.data.firstName
+                password: payload.data.password,
+                email: payload.data.email,
+                first_name: payload.data.first_name,
+                last_name: payload.data.last_name
             }
         case `${LOGIN_USER}_FULFILLED`:
             return {

@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-// import axios from 'axios';
 import {Link} from "react-router-dom";
-// import {connect} from 'react-redux';
-// import {registerUser} from '../../Redux/reducers/userReducer';
+import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
+import {registerUser} from '../../Redux/reducers/userReducer';
 
-
-export default class Register extends Component {
+class Register extends Component {
     constructor() {
         super();
         this.state = {
@@ -15,6 +14,25 @@ export default class Register extends Component {
             first_name: '', 
             last_name: ''
         }
+    }
+
+    handleSubmit = (e) => {
+        const formName = e.target.name; //???????
+        const {username, password, email, first_name, last_name} = this.state;
+        const {registerUser} = this.props;
+        if(formName === 'register') {
+            registerUser({
+                username, 
+                password, 
+                email, 
+                first_name, 
+                last_name
+            })
+        }
+    }
+
+    handleInput = (e) => {
+        // this.setState({[e.target.name]: e.target.value}) //??????
     }
 
     // register() {
@@ -29,35 +47,51 @@ export default class Register extends Component {
     render() {
         return (
             <div>
-                <h1>Register</h1>
+                <h1>Welcome to Flash Curve!</h1>
+                <h4>To setup an account please register below.</h4>
                 <div>
                 <form name='register' onSubmit={this.handleSubmit}>
-                    <h2>New Users</h2>
-                    <label>Create a username:</label>
+                    <label>Username</label>
                     <input 
                     name='username' 
                     onChange={this.handleInput} 
                     />
-                    <label>password</label>
+                    <label>Password</label>
                     <input 
                     name='password' 
                     onChange={this.handleInput} 
                     />
-                    <label>email:</label>
+                    <label>Email</label>
                     <input 
                     name='email' 
                     onChange={this.handleInput} 
                     />
                     <label>First name</label>
                     <input 
-                    name='firstName' 
+                    name='first_name' 
                     onChange={this.handleInput} 
                     />   
-                    {/* <button type='submit'>submit</button>*/}
-                    <Link to="/user">Submit</Link>
+                    <label>Last name</label>
+                    <input 
+                    name='last_name' 
+                    onChange={this.handleInput} 
+                    />   
+                    <Link to="/user">
+                    <button type='submit'>submit</button>
+                    </Link>
                 </form>
                 </div>
             </div>
-        )
+        );
     }
 }
+
+const mapStateToProps = reduxState => {
+    return {
+        // user_id: reduxState.userReducer.user_id //???????
+    }
+}
+
+export default connect(mapStateToProps,
+    registerUser
+    )(Register);

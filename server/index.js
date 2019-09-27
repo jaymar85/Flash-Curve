@@ -33,7 +33,7 @@ app.post('/auth/register', authController.register);
 app.post('/auth/login', authController.login);
 app.get('/auth/logout', authController.logout);
 
-// Card Topics 
+// Topics 
 app.get('/api/topic', topicController.getTopic);
 app.post('/api/topic', topicController.addTopic);
 app.delete('/api/topic', topicController.deleteTopic);

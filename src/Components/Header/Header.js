@@ -7,6 +7,7 @@ import {connect} from "react-redux";
 import {getUser, logoutUser} from '../../Redux/reducers/userReducer';
 
 class Header extends React.Component {
+    
     constructor() {
         super();
         this.state = {
@@ -16,6 +17,7 @@ class Header extends React.Component {
     componentDidMount() {
         this.props.getUser();
     }
+    register() {}
 
     handleLogout = () => {
         this.props.logoutUser();
@@ -23,7 +25,7 @@ class Header extends React.Component {
     }
 
     render() {
-        const {firstName} = this.props;
+        const {first_name} = this.props;
         // const alias = firstName ? firstName : 'Guest';
         return (            
             <div>
@@ -35,38 +37,38 @@ class Header extends React.Component {
                     {this.props.location.pathname !== '/'
                     ? null 
                     :
-                    <>
-                    <div className="loginForm">
-                        <div className="input-wrap">
-                            {/* Username */}
-                            <div className="titles">
-                                <p>Username</p>
-                                <p>Password</p>                                        
+                    <section>
+                        <div className="loginForm">
+                            <div className="input-wrap">
+                                {/* Username */}
+                                <div className="titles">
+                                    <p>Username</p>
+                                    <p>Password</p>                                        
+                                </div>
+                                {/* Password */}
+                                <div className="inputs">
+                                    <input 
+                                    type="text" 
+                                    placeholder="Username"
+                                    // value={username}
+                                    onChange={e => this.handleUsernameInput(e.target.value)}/>
+                                    <input type="password" 
+                                    placeholder="password"
+                                    // value={password}
+                                    onChange={e => this.handlePasswordInput(e.target.value)}/>
+                                </div>
+                            </div>                            
+                            {/* Login/Registration Button */}                
+                            <div className="link-wrap">
+                                <Link to="/user" className="links">Log In</Link>
+                                <Link to="/register" className="links">Sign Up</Link>
                             </div>
-                            {/* Password */}
-                            <div className="inputs">
-                                <input 
-                                type="text" 
-                                placeholder="Username"
-                                // value={username}
-                                onChange={e => this.handleUsernameInput(e.target.value)}/>
-                                <input type="password" 
-                                placeholder="password"
-                                // value={password}
-                                onChange={e => this.handlePasswordInput(e.target.value)}/>
-                            </div>
-                        </div>                            
-                        {/* Login/Registration Button */}                
-                        <div className="link-wrap">
-                            <Link to="/user" className="links">Log In</Link>
-                            <Link to="/register" className="links">Sign Up</Link>
                         </div>
-                        </div>
-                    </>
+                    </section>
                     }
                 
                     
-                    {firstName ? <button onClick={this.handleLogout}></button> : null}
+                    {first_name ? <button onClick={this.handleLogout}></button> : null}
                 </nav>
             </div>           
         )
