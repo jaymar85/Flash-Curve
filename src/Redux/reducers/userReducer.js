@@ -1,15 +1,16 @@
 import axios from 'axios';
 
+// Initial State
 const initialState = {
-    user_id: null,
+    userId: null,
     username: '',
     password: '',
     email: '',
-    first_name: '',
-    last_name: ''
+    firstName: '',
+    lastName: ''
 }
 
-// Action types
+// Action type
 const GET_USER = 'GET_USER';
 const REGISTER_USER = 'REGISTER_USER';
 const LOGIN_USER = 'LOGIN_USER';
@@ -22,6 +23,8 @@ export function getUser() {
     }
 }
 export function registerUser(newUser) {
+    // function exporting to Register component
+    // console.log('hit', newUser);
     return {
         type: REGISTER_USER,
         payload: axios.post('/auth/register', newUser)
@@ -43,6 +46,7 @@ export function logoutUser() {
 // Reducer
 export default function Reducer(state=initialState, action) {
     const {type, payload} = action;
+    console.log(payload);
     switch(type) {
         case `${GET_USER}_FULFILLED`:
             return {
@@ -52,29 +56,30 @@ export default function Reducer(state=initialState, action) {
                 firstName: payload.data.firstName
             };
         case `${REGISTER_USER}_FULFILLED`:
+            console.log(payload.data);
             return {
                 ...state,
                 userId: payload.data.user_id,
                 username: payload.data.username,
                 password: payload.data.password,
                 email: payload.data.email,
-                first_name: payload.data.first_name,
-                last_name: payload.data.last_name
-            }
+                firstName: payload.data.first_name,
+                lastName: payload.data.last_name
+            };
         case `${LOGIN_USER}_FULFILLED`:
             return {
                 ...state,
                 userId: payload.data.user_id,
                 username: payload.data.username,
                 firstName: payload.data.firstName
-            }
+            };
             case `${LOGOUT_USER}_FULFILLED`:
             return {
                 ...state,
                 userId: payload.data.user_id,
                 username: payload.data.username,
                 firstName: payload.data.firstName
-            }
+            };
         default: return state;
     }
 }

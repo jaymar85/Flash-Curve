@@ -15,7 +15,7 @@ class Header extends React.Component {
     }
 
     componentDidMount() {
-        this.props.getUser();
+        // this.props.getUser();
     }
     register() {}
 
@@ -25,6 +25,9 @@ class Header extends React.Component {
     }
 
     render() {
+        // if(this.props.user_id) {
+        //     return 
+        // }
         const {first_name} = this.props;
         // const alias = firstName ? firstName : 'Guest';
         return (            

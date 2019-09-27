@@ -10,18 +10,18 @@ module.exports = {
         } else {
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(password, salt);
-        const registerUser = await db.authorization.registerUser([username, hash, email, first_name, last_name]);
+        const registerUser = await db.authorization.registerUser(username, hash, email, first_name, last_name);
         const user = registerUser[0]; //this is our new users 
             req.session.user = { 
                 user_id: user.user_id,
                 username: user.username,
-                password: user.hash,
+                // password: user.password,
                 email: user.email,
                 first_name: user.first_name,
                 last_name: user.last_name 
             };
+            return res.status(200).json(req.session.user); 
         }
-        return res.status(201).json(req.session.user); //.json() = .send()
     },
     login: async (req, res) => {
         const {username, password} = req.body;
@@ -35,7 +35,7 @@ module.exports = {
                 return res.status(403).json("Password incorrect");
             } else {
                 req.session.user = {
-                    user_id: user.user_id,
+                    // user_id: user.user_id,
                     username: user.username,
                     password: user.hash
                 }
