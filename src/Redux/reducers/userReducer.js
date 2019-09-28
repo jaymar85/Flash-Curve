@@ -11,14 +11,14 @@ const initialState = {
 }
 
 // Action type
-const GET_USER = 'GET_USER';
+const GET_USER_SESSION = 'GET_USER';
 const REGISTER_USER = 'REGISTER_USER';
 const LOGIN_USER = 'LOGIN_USER';
 const LOGOUT_USER = 'LOGOUT_USER';
 
 export function getUser() {
     return {
-        type: GET_USER,
+        type: GET_USER_SESSION,
         payload: axios.get('/auth/user')
     }
 }
@@ -31,6 +31,7 @@ export function registerUser(newUser) {
     }
 }
 export function loginUser(user) {
+    console.log('hit');
     return {
         type: LOGIN_USER,
         payload: axios.post('/auth/login', user)
@@ -46,9 +47,9 @@ export function logoutUser() {
 // Reducer
 export default function Reducer(state=initialState, action) {
     const {type, payload} = action;
-    console.log(payload);
+    // console.log(payload);
     switch(type) {
-        case `${GET_USER}_FULFILLED`:
+        case `${GET_USER_SESSION}_FULFILLED`:
             return {
                 ...state,
                 userId: payload.data.user_id,
@@ -56,7 +57,7 @@ export default function Reducer(state=initialState, action) {
                 firstName: payload.data.firstName
             };
         case `${REGISTER_USER}_FULFILLED`:
-            console.log(payload.data);
+            // console.log(payload.data);
             return {
                 ...state,
                 userId: payload.data.user_id,
@@ -67,6 +68,7 @@ export default function Reducer(state=initialState, action) {
                 lastName: payload.data.last_name
             };
         case `${LOGIN_USER}_FULFILLED`:
+            console.log(payload.data);
             return {
                 ...state,
                 userId: payload.data.user_id,

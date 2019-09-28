@@ -19,7 +19,6 @@ class Register extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-
         // const formName = e.target.name; //name = to the form
         const { username, password, email, first_name, last_name } = this.state;
         // console.log(username);

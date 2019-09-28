@@ -25,7 +25,8 @@ module.exports = {
     },
     login: async (req, res) => {
         const {username, password} = req.body;
-        const findUser = await req.app.get('db').authorization.getUser([username]);
+        // console.log(username);
+        const findUser = await req.app.get('db').authorization.getUser(username);
         const user = findUser[0];
         if(!user) {
             return res.status(401).json("Username incorrect");
@@ -35,10 +36,11 @@ module.exports = {
                 return res.status(403).json("Password incorrect");
             } else {
                 req.session.user = {
-                    // user_id: user.user_id,
-                    username: user.username,
-                    password: user.hash
+                    user_id: user.user_id,
+                    username: user.username
+                    // password: user.hash //don't put passwords on session
                 }
+                console.log(req.session.user);
                 return res.status(200).json(req.session.user);
             }   
         }

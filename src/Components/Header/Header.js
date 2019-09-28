@@ -4,31 +4,49 @@ import "./Header.css";
 // import axios from "axios";
 import {Link, withRouter} from "react-router-dom";
 import {connect} from "react-redux";
-import {getUser, logoutUser} from '../../Redux/reducers/userReducer';
+import {getUser, loginUser, logoutUser} from '../../Redux/reducers/userReducer';
 
 class Header extends React.Component {
     
     constructor() {
         super();
         this.state = {
+            firstName: '',
+            username: '',
+            password: ''
         }
     }
 
-    componentDidMount() {
-        // this.props.getUser();
-    }
-    register() {}
+    // componentDidMount() {
+    //     // this.props.getUser();
+    // }
 
-    handleLogout = () => {
-        this.props.logoutUser();
-        this.props.history.push('/');
+    handleLogin = (e) => {
+        e.preventDefault();
+        const { username, password } = this.state;
+        // console.log(username);
+        const {loginUser} = this.props;
+        loginUser({
+            username,
+            password
+        })
     }
+
+    handleInput = e => {
+        // console.log(e.target.value);
+        this.setState({ [e.target.name]: e.target.value }); 
+    };
+
+    // handleLogout = () => {
+    //     this.props.logoutUser();
+    //     this.props.history.push('/');
+    // }
 
     render() {
         // if(this.props.user_id) {
         //     return 
         // }
-        const {first_name} = this.props;
+        // const {first_name} = this.props;
         // const alias = firstName ? firstName : 'Guest';
         return (            
             <div>
@@ -36,42 +54,42 @@ class Header extends React.Component {
                     <div className="logo">
                         <Link to="/"><img src={logo} alt="flash curve"/></Link>
                     </div>
-                    {/* Login Form */}
+                    
                     {this.props.location.pathname !== '/'
                     ? null 
                     :
-                    <section>
+                    <form name='login' onSubmit={this.handleLogin}>
                         <div className="loginForm">
-                            <div className="input-wrap">
+                            <div className="input-wrap">                           
                                 {/* Username */}
-                                <div className="titles">
-                                    <p>Username</p>
-                                    <p>Password</p>                                        
-                                </div>
-                                {/* Password */}
-                                <div className="inputs">
+                                <div className="username-input">
+                                    <label>Username</label>
                                     <input 
-                                    type="text" 
+                                    name="username" 
                                     placeholder="Username"
                                     // value={username}
-                                    onChange={e => this.handleUsernameInput(e.target.value)}/>
-                                    <input type="password" 
+                                    onChange={this.handleInput}/>
+                                    </div>
+                                {/* Password */}
+                                <div className="password-input">
+                                    <label>Password</label>
+                                    <input 
+                                    name="password" 
                                     placeholder="password"
                                     // value={password}
-                                    onChange={e => this.handlePasswordInput(e.target.value)}/>
+                                    onChange={this.handleInput}/>
                                 </div>
                             </div>                            
                             {/* Login/Registration Button */}                
                             <div className="link-wrap">
-                                <Link to="/user" className="links">Log In</Link>
+                                <button >Log In</button>
                                 <Link to="/register" className="links">Sign Up</Link>
                             </div>
                         </div>
-                    </section>
-                    }
-                
+                    </form>
+                    }       
                     
-                    {first_name ? <button onClick={this.handleLogout}></button> : null}
+                    {this.state.firstName ? <button onClick={this.handleLogout}></button> : null}
                 </nav>
             </div>           
         )
@@ -80,12 +98,13 @@ class Header extends React.Component {
 
 const mapStateToProps = reduxState => {
     return {
-        firstName: reduxState.userReducer.firstName
+        userId: reduxState.userReducer.user_id
     }
 }
 
 export default withRouter(connect(mapStateToProps, {
     getUser,
+    loginUser,
     logoutUser
 }
 )(Header));
