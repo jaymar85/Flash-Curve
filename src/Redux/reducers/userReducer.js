@@ -31,7 +31,7 @@ export function registerUser(newUser) {
     }
 }
 export function loginUser(user) {
-    console.log('hit');
+    // console.log('hit');
     return {
         type: LOGIN_USER,
         payload: axios.post('/auth/login', user)

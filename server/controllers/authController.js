@@ -40,7 +40,7 @@ module.exports = {
                     username: user.username
                     // password: user.hash //don't put passwords on session
                 }
-                console.log(req.session.user);
+                // console.log(req.session.user);
                 return res.status(200).json(req.session.user);
             }   
         }

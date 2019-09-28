@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import {Link} from "react-router-dom";
+import {connect} from 'react-redux';
 
 export default class UserLanding extends Component {
+
+    componentDidMount() {}
+
     render() {
         return (
             <div>
@@ -9,7 +13,7 @@ export default class UserLanding extends Component {
                 
                 <Link to="/post">Create</Link>
                 <Link to="/myprofile">My Profile</Link>
-                <Link to="/">Log out</Link>
+                {/*<button>Log out</button>*/}
             </div>
         )
     }

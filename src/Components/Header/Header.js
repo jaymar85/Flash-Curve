@@ -2,7 +2,7 @@ import React from "react";
 import logo from "../../assets/fc_logo.png";
 import "./Header.css";
 // import axios from "axios";
-import {Link, withRouter} from "react-router-dom";
+import {Link, withRouter, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import {getUser, loginUser, logoutUser} from '../../Redux/reducers/userReducer';
 
@@ -13,13 +13,21 @@ class Header extends React.Component {
         this.state = {
             firstName: '',
             username: '',
-            password: ''
+            password: '',
+            // userId: null,
+            clickedRegister: false,
+            triedToClick: false,
+            redirectUser: false,
         }
     }
 
-    // componentDidMount() {
-    //     // this.props.getUser();
-    // }
+    componentDidMount() {
+        this.props.getUser();
+    }
+    handleInput = e => {
+        // console.log(e.target.value);
+        this.setState({ [e.target.name]: e.target.value }); 
+    };
 
     handleLogin = (e) => {
         e.preventDefault();
@@ -31,28 +39,39 @@ class Header extends React.Component {
             password
         })
     }
-
-    handleInput = e => {
-        // console.log(e.target.value);
-        this.setState({ [e.target.name]: e.target.value }); 
-    };
-
-    // handleLogout = () => {
-    //     this.props.logoutUser();
-    //     this.props.history.push('/');
+    // handleRedirectUser = () => {
+    //     this.setState({
+    //         redirectUser: true
+    //     })
+    //     if(this.state.redirectUser === true && this.props.userId === false) {
+    //         return <Redirect to="/register"/>
+    //     }
+    //     console.log(this.state.redirectUser);
     // }
+    handleLogout = () => {
+        this.props.logoutUser();
+        this.props.history.push('/');
+    }
 
     render() {
-        // if(this.props.user_id) {
-        //     return 
+        // if (this.state.redirectUser === true && this.props.userId === true) {
+        //     return <Redirect to="/user"/>
         // }
-        // const {first_name} = this.props;
-        // const alias = firstName ? firstName : 'Guest';
+        if(this.props.userId) {
+            return <Redirect to="/user"/>
+        }
+        const {firstName} = this.props;
+        const alias = firstName ? firstName : 'Guest'; //alias in id=Header
         return (            
             <div>
                 <nav className="nav">
                     <div className="logo">
                         <Link to="/"><img src={logo} alt="flash curve"/></Link>
+                    </div>
+
+                    <div id='Header'>
+                    <h4>Hello, {alias}</h4>
+                    {this.state.firstName ? <button type='submit' onClick={this.handleLogout}>Log Out</button> : null}
                     </div>
                     
                     {this.props.location.pathname !== '/'
@@ -82,14 +101,13 @@ class Header extends React.Component {
                             </div>                            
                             {/* Login/Registration Button */}                
                             <div className="link-wrap">
-                                <button >Log In</button>
-                                <Link to="/register" className="links">Sign Up</Link>
+                                <button>Log In</button>
+                                <Link to="/register"><button>Sign Up</button></Link>
                             </div>
                         </div>
                     </form>
                     }       
-                    
-                    {this.state.firstName ? <button onClick={this.handleLogout}></button> : null}
+
                 </nav>
             </div>           
         )
@@ -98,7 +116,7 @@ class Header extends React.Component {
 
 const mapStateToProps = reduxState => {
     return {
-        userId: reduxState.userReducer.user_id
+        userId: reduxState.userReducer.userId
     }
 }
 
