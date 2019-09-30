@@ -7,16 +7,24 @@ const initialState = {
 }
 
 // TOPIC Action types
+const GET_USER_TOPICS = 'GET_USER_TOPICS';
 const UPDATE_TOPIC_NAME = 'UPDATE_TOPIC_NAME';
 const UPDATE_TOPIC_DESCRIPTION = 'UPDATE_TOPIC_DESCRIPTION';
 const ADD_TOPIC = 'ADD_TOPIC';
 const DELETE_TOPIC = 'DELETE_TOPIC';
 // FLASHCARD Action types
+const GET_USER_CARDS = 'GET_USER_CARDS';
 const UPDATE_CARD = 'UPDATE_CARD';
 const ADD_CARD = 'ADD_CARD';
 const DELETE_CARD = 'DELETE_CARD';
 
 // TOPIC functions
+export function accessUserTopics() {
+    return {
+        type: GET_USER_TOPICS,
+        payload: axios.get('/api/topics')
+    }
+}
 export function updateTopicName() {
     return {
         type: UPDATE_TOPIC_NAME,
@@ -42,6 +50,12 @@ export function deleteTopic() {
     }
 } 
 // FLASHCARD functions
+export function getUserCards(topicId) {
+    return {
+        type: GET_USER_CARDS,
+        payload: axios.get(`/api/flashcard/${topicId}`)
+    }
+}
 export function updateCard() {
     return {
         type: UPDATE_CARD,
@@ -66,7 +80,12 @@ export default function Reducer(state=initialState, action) {
     const {type, payload} = action;
     // console.log(payload);
     switch(type) {
-        // TOPIC cases
+        ////////////// TOPIC cases //////////////
+        case `${GET_USER_TOPICS}_FULFILLED`:
+            return {
+                ...state,
+                topics: payload.data
+            };
         case `${UPDATE_TOPIC_NAME}_FULFILLED`:
             return {
                 ...state,
@@ -89,7 +108,14 @@ export default function Reducer(state=initialState, action) {
                 ...state,
                 topics: payload.data
             };
-        // FLASHCARD cases
+
+        /////////// FLASHCARD cases /////////////
+        case `${GET_USER_CARDS}_FULFILLED`:
+            console.log(payload);
+            return {
+                ...state,
+                cards: payload.data
+            }
         case `${UPDATE_CARD}_FULFILLED`:
             return {
                 ...state,

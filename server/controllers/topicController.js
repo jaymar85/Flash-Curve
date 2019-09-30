@@ -1,12 +1,9 @@
 module.exports = {
     getTopic: async (req, res) => {
-        const {user_id, topic_id, name, description} = req.body;
-        // const {user_id} = req.session.user;
+        const {user_id} = req.session.user;
         const db = req.app.get('db');
-        const pickTopic = db.topic.get_topics([user_id, topic_id, name, description])
-        .then(response => {
-            return res.status(200).send(pickTopic);})
-        .catch(() => {res.sendStatus(500)});
+        const userTopics = await db.topic.get_topics(user_id)
+        res.status(200).send(userTopics);
     },
     addTopic: async (req, res) => {
         const {user_id, name, description} = req.body; // values for making a topic
@@ -19,12 +16,6 @@ module.exports = {
             .catch(err => {
                 res.status(409).send('Please provide a name')
             });
-        // if (!add) {
-        //     res.status(409).send('Please provide a name');
-        // } 
-        // else {            
-        //     return res.status(200).send(topics);
-        // }
     },
     editTopicName: async (req, res) => {
         const {topic_id, name} = req.body;

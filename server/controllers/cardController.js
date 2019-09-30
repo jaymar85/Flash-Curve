@@ -1,8 +1,8 @@
 module.exports = {
     getFlashcard: async (req, res) => {
-        const topic_id = +req.params.id;
+        const topic_id = +req.params.topic_id;
         const db = req.app.get('db');
-        const cardGet = await db.cards.get_cards([topic_id]);
+        const cardGet = await db.cards.get_cards(topic_id);
         res.status(200).send(cardGet);
     }, 
     addFlashcard: async (req, res) => {

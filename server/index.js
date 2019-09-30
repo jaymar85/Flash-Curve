@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const massive = require("massive");
 const session = require("express-session");
+
 // Controllers
 const authController = require("./controllers/authController");
 const cardController = require("./controllers/cardController");
@@ -26,23 +27,21 @@ app.use(session({
     }
 }))
 
-// Endpoints
-
+/////////////// Endpoints ////////////////
 // Authentication 
 app.get('/auth/get_session', authController.getSession);
 app.post('/auth/register', authController.register);
 app.post('/auth/login', authController.login);
 app.post('/auth/logout', authController.logout);
-
 // Topics 
-app.get('/api/topic', topicController.getTopic);
+app.get('/api/topics', topicController.getTopic);
 app.post('/api/topic', topicController.addTopic);
 app.delete('/api/topic', topicController.deleteTopic);
 app.put('/api/topic_name', topicController.editTopicName);
 app.put('/api/topic_description', topicController.editTopicDescription);
-
 // Flash Cards
-app.get('/api/flashcard/:id', cardController.getFlashcard);
+app.get('/api/flashcard/:topic_id', cardController.getFlashcard);
+app.get('/api/cards/card_id', cardController.getFlashcard);
 app.post('/api/create', cardController.addFlashcard);
 app.put('/api/flashcard', cardController.editFlashcard);
 app.delete('/api/flashcard', cardController.deleteFlashcard);

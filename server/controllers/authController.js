@@ -21,7 +21,7 @@ module.exports = {
         const registerUser = await db.authorization.registerUser(username, hash, email, first_name, last_name);
         const user = registerUser[0]; //this is our new users 
             req.session.user = { 
-                // user_id: user.user_id,
+                user_id: user.user_id,
                 username: user.username,
                 // password: user.password,
                 email: user.email,
