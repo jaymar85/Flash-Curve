@@ -1,0 +1,26 @@
+@import '../../styles/variables';
+
+.body-container {
+    width: 100vw;
+    height: 70vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#color-top {
+    width: 90vw;
+    height: 1vh;
+    background: $primaryButton;
+    display: flex;
+    justify-content: center; 
+    align-items: flex-start;
+}
+
+.body-logo {
+    width: 90vw;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

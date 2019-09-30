@@ -1,0 +1,62 @@
+@import '../../styles/components';
+@import '../Register/Register.scss';
+
+$primaryButton: #18c4be;
+$hoverColor: #00f9ed;
+@mixin flex {
+    display: flex;
+    align-items: center;
+}
+
+.nav {
+    width: 100vw;
+    height: 12vh;
+    background: #26384c;
+    @include flex();
+    justify-content: space-between;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.5);
+    .logo {
+        width: 20vw;
+        margin-left: 1vw;
+    }
+}
+
+.loginForm {
+    width: 50vw;
+    @include flex();
+    justify-content: flex-end;
+    color: white;
+}
+
+.input-wrap {
+    width: 16vw;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    #username, #password {
+        display: flex;
+    }   
+}
+
+.link-wrap  {
+    width: 12vw; 
+    @include flex(); 
+    justify-content: space-evenly;
+    button {
+        @extend .submit-btn;
+    }
+}
+
+#logout-form {
+    width: 16vw;
+    height: 4vh;
+    color: white;
+    @include flex();
+    justify-content: space-evenly;  
+
+    button {
+        @extend .submit-btn;
+    }
+}

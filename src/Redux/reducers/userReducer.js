@@ -19,12 +19,12 @@ const LOGOUT_USER = 'LOGOUT_USER';
 export function getUser() {
     return {
         type: GET_USER_SESSION,
-        payload: axios.get('/auth/user')
+        payload: axios.get('/auth/get_session')
     }
 }
 export function registerUser(newUser) {
     // function exporting to Register component
-    // console.log('hit', newUser);
+    // console.log('hit user ducer', newUser);
     return {
         type: REGISTER_USER,
         payload: axios.post('/auth/register', newUser)
@@ -38,9 +38,9 @@ export function loginUser(user) {
     }
 }
 export function logoutUser() {
-    axios.post('/auth/logout')
     return {
-        type: LOGOUT_USER
+        type: LOGOUT_USER,
+        payload: axios.post('/auth/logout')
     }
 } 
 
@@ -54,7 +54,9 @@ export default function Reducer(state=initialState, action) {
                 ...state,
                 userId: payload.data.user_id,
                 username: payload.data.username,
-                firstName: payload.data.firstName
+                email: payload.data.email,
+                firstName: payload.data.first_name,
+                lastName: payload.data.last_name
             };
         case `${REGISTER_USER}_FULFILLED`:
             // console.log(payload.data);
@@ -62,25 +64,30 @@ export default function Reducer(state=initialState, action) {
                 ...state,
                 userId: payload.data.user_id,
                 username: payload.data.username,
-                password: payload.data.password,
                 email: payload.data.email,
                 firstName: payload.data.first_name,
                 lastName: payload.data.last_name
             };
         case `${LOGIN_USER}_FULFILLED`:
-            console.log(payload.data);
+            // console.log(payload.data);
             return {
                 ...state,
                 userId: payload.data.user_id,
                 username: payload.data.username,
-                firstName: payload.data.firstName
+                email: payload.data.email,
+                firstName: payload.data.first_name,
+                lastName: payload.data.last_name
             };
             case `${LOGOUT_USER}_FULFILLED`:
-            return {
-                ...state,
-                userId: payload.data.user_id,
-                username: payload.data.username,
-                firstName: payload.data.firstName
+                // console.log(initialState);              
+            return {  
+                ...initialState
+                // userId: null,
+                // username: '',
+                // password: '',
+                // email: '',
+                // firstName: '',
+                // lastName: ''                
             };
         default: return state;
     }

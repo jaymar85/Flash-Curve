@@ -1,64 +1,214 @@
-/* Parent */
-.nav {
-    width: 100vw;
-    height: 12vh;
-    background: #26384c;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.submit-btn, .register-container .register-center .form-container .reg-form #submit button {
+  color: white;
+  background: #18c4be;
+  border: solid #18c4be;
+  border-radius: 5px;
+  text-decoration: none;
 }
 
-.logo {
-    width: 25vw;
+.submit-btn:hover, .register-container .register-center .form-container .reg-form #submit button:hover {
+  background: #00f9ed;
+  border: solid #00f9ed;
+}
+
+.register-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.register-container .register-center {
+  width: 50vw;
+  height: 50vh;
+  margin-top: 18vh;
+  border: solid white;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+}
+
+.register-container .register-center .form-container {
+  /* height: 90vh; */
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.register-container .register-center .form-container .reg-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.register-container .register-center .form-container .reg-form #username, .register-container .register-center .form-container .reg-form #password, .register-container .register-center .form-container .reg-form #email, .register-container .register-center .form-container .reg-form #firstname, .register-container .register-center .form-container .reg-form #lastname {
+  height: 5vh;
+}
+
+.register-container .register-center .form-container .reg-form #submit button {
+  color: white;
+  border-radius: 2px;
+  background: #18c4be;
+  border: solid #18c4be;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.register-container .register-center .form-container .reg-form #submit button:hover {
+  background: #00f9ed;
+  border: solid #00f9ed;
+}
+
+.nav {
+  width: 100vw;
+  height: 12vh;
+  background: #26384c;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+}
+
+.nav .logo {
+  width: 20vw;
 }
 
 .loginForm {
-    width: 50vw;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+  width: 50vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  color: white;
 }
 
 .input-wrap {
-    width: 25vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;    
+  width: 20vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.input-wrap #username, .input-wrap #password {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .titles {
-    
-    height: 5vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+  height: 5vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
 
 .inputs {
-    display: flex;
-    justify-content: space-evenly;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
 
 p {
-    color: white;
-    margin-right: 60px;
+  color: white;
+  margin-right: 60px;
 }
 
 .link-wrap {
-    width: 10vw; 
-    display: flex; 
-    justify-content: space-evenly;
-    align-items:    
+  width: 10vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
 
-.links {
-    text-decoration: none;
-    color: white;
-    border: 1px solid #18c4be;
-    border-radius: 5px;
+.link-wrap button {
+  color: white;
+  background: #18c4be;
+  border: solid #18c4be;
+  border-radius: 5px;
+  text-decoration: none;
 }
 
+.link-wrap button:hover {
+  background: #00f9ed;
+  border: solid #00f9ed;
+}
 
+#logout-form {
+  width: 16vw;
+  height: 4vh;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
 
+#logout-form button {
+  color: white;
+  background: #18c4be;
+  border: solid #18c4be;
+  border-radius: 5px;
+  text-decoration: none;
+}
 
-
+#logout-form button:hover {
+  background: #00f9ed;
+  border: solid #00f9ed;
+}
+/*# sourceMappingURL=Header.css.map */

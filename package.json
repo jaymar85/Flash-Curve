@@ -11,6 +11,8 @@
     "express": "^4.17.1",
     "express-session": "^1.16.2",
     "massive": "^6.1.0",
+    "node-sass": "^4.12.0",
+    "nodemailer": "^6.3.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-redux": "^7.1.1",
@@ -39,5 +41,18 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaymar85/Flash-Curve.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jaymar85/Flash-Curve/issues"
+  },
+  "homepage": "https://github.com/jaymar85/Flash-Curve#readme"
 }

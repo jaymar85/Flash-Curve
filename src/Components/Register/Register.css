@@ -1,0 +1,64 @@
+.submit-btn, .register-container .register-center .form-container .reg-form #submit button {
+  color: white;
+  background: #18c4be;
+  border: solid #18c4be;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.submit-btn:hover, .register-container .register-center .form-container .reg-form #submit button:hover {
+  background: #00f9ed;
+  border: solid #00f9ed;
+}
+
+.register-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.register-container .register-center {
+  width: 50vw;
+  height: 50vh;
+  margin-top: 18vh;
+  border: solid white;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+}
+
+.register-container .register-center .form-container {
+  /* height: 90vh; */
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.register-container .register-center .form-container .reg-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.register-container .register-center .form-container .reg-form #username, .register-container .register-center .form-container .reg-form #password, .register-container .register-center .form-container .reg-form #email, .register-container .register-center .form-container .reg-form #firstname, .register-container .register-center .form-container .reg-form #lastname {
+  height: 5vh;
+}
+/*# sourceMappingURL=Register.css.map */

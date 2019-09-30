@@ -5,7 +5,7 @@ export default class UserProfile extends Component {
     render() {
         return (
             <div>
-                My profile
+                My User Profile Page                
                 <Link to="/user">Update</Link>
             </div>
         )

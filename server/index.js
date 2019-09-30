@@ -29,9 +29,10 @@ app.use(session({
 // Endpoints
 
 // Authentication 
+app.get('/auth/get_session', authController.getSession);
 app.post('/auth/register', authController.register);
 app.post('/auth/login', authController.login);
-app.get('/auth/logout', authController.logout);
+app.post('/auth/logout', authController.logout);
 
 // Topics 
 app.get('/api/topic', topicController.getTopic);

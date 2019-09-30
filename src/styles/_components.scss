@@ -1,0 +1,14 @@
+@import './variables';
+
+.submit-btn {
+    color: white;
+    background: $primaryButton;
+    border: solid $primaryButton;
+    border-radius: 5px;
+    text-decoration: none;
+    
+    &:hover {
+        background: $hoverColor;
+        border: solid $hoverColor;
+    }  
+  }

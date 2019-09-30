@@ -1,0 +1,43 @@
+@import '../../styles//components';
+
+
+@mixin flex {
+    display: flex;
+    align-items: center;
+}
+
+.register-container {
+
+    @include flex();
+    justify-content: center;    
+
+    .register-center {
+    width: 50vw;
+    height: 50vh;
+    margin-top: 18vh;
+    border: solid white;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.5);
+    
+        .form-container {
+        /* height: 90vh; */
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        
+        .reg-form {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+                #username, #password, #email, #firstname, #lastname {
+                    height: 5vh;                
+                }
+                #submit {   
+                    button {
+                        @extend .submit-btn;
+                    }
+                } 
+            }
+        }
+    }    
+}
