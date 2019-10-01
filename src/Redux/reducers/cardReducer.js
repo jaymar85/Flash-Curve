@@ -37,11 +37,13 @@ export function registerUserDesc() {
         payload: axios.put('/api/topic_description')
     }
 }
-export function addTopic() {
+export function addTopic(newCase) { 
     return {
         type: ADD_TOPIC,
-        payload: axios.post('/api/topic')
+        payload: axios.post('/api/topic', newCase)
     }
+    // newCase = new object
+    // relaying and shooting the info to the back
 }
 export function deleteTopic() {
     return {

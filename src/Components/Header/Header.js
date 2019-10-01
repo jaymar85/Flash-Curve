@@ -46,7 +46,6 @@ class Header extends React.Component {
     }
 
     render() {
-
         const {firstName, username} = this.props;
         // const alias = firstName ? firstName : 'Guest'; 
         return (            
@@ -67,6 +66,7 @@ class Header extends React.Component {
                                 <div id="username">
                                     <label></label>
                                     <input 
+                                    className="add-username"
                                     name="username" 
                                     placeholder="Username"
                                     onChange={this.handleInput}/>
@@ -75,6 +75,7 @@ class Header extends React.Component {
                                 <div id="password">
                                     <label></label>
                                     <input 
+                                    className="add-password"
                                     name="password" 
                                     type="password"
                                     placeholder="Password"

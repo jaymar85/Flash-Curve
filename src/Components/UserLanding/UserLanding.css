@@ -1,0 +1,79 @@
+.submit-btn, .create-topic, .add-sum-mow {
+  color: white;
+  background: #18c4be;
+  border: solid #18c4be;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.submit-btn:hover, .create-topic:hover, .add-sum-mow:hover {
+  background: #00f9ed;
+  border: solid #00f9ed;
+}
+
+.sub-nav {
+  width: 100vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: solid #18c4be;
+  opacity: 0.80;
+  background-color: #18c4be;
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+}
+
+.topicslist, .statsheet, .profile {
+  width: 30vw;
+  color: white;
+  text-underline-position: none;
+  background: none;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.create-topic {
+  position: fixed;
+  width: 3rem;
+  height: 3rem;
+  background: #18c4be;
+  margin: 0;
+  border-radius: 50%;
+  border: none;
+  right: 36px;
+  bottom: 34px;
+  font-size: 190%;
+  outline: none;
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+}
+
+.pop-up-form {
+  width: 40vw;
+  height: 18vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+.add-name, .add-description {
+  border: solid #18c4be;
+  border: solid 1px #ccc;
+  border-radius: 3px;
+}
+/*# sourceMappingURL=UserLanding.css.map */

@@ -5,8 +5,9 @@ import Home from "./Components/Home/Home";
 import Register from "./Components/Register/Register";
 import UserLanding from "./Components/UserLanding/UserLanding";
 import UserProfile from "./Components/UserProfile/UserProfile";
-import Topics from "./Components/Topics/Topics";
+import CreateNewTopic from "./Components/CreateNewTopic/CreateNewTopic";
 import TopicCards from "./Components/TopicCards/TopicCards";
+import StudyCases from "./Components/StudyCases/StudyCases"
 
 export default (
     <Switch>
@@ -15,14 +16,10 @@ export default (
         <Route component={UserProfile} path="user/profile" />
         <Route component={UserLanding} path="/user" />
         <Route component={TopicCards} path='/topics/:topic_id' />
-        
+        <Route component={CreateNewTopic} path='/create' />
+        <Route component={StudyCases} path='/topics' />
     </Switch>
 );
-// <Route component={Topics} path="/topics"/>
-// <Route path="/user" render={() => (
-//     <UserLanding>
-//         <Route component={UserProfile} path="user/profile" />
-//         <Route component={TopicCards} path='/topics/:topic_id' />
-//         <Route component={Topics} path="/topics"/>
-//     </UserLanding>
-// )} />
+
+
+

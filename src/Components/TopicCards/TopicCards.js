@@ -1,12 +1,28 @@
 import React, { Component } from 'react'
-import {Link} from "react-router-dom";
+// import {Link} from "react-router-dom";
 import {connect} from 'react-redux';
-import {getUserCards} from '../../Redux/reducers/cardReducer';
+import {getUserCards, addCard } from '../../Redux/reducers/cardReducer';
 
 class TopicCards extends Component {
+
+    constructor() {
+        super();
+        this.state = {
+            cards: [],
+            description: ''
+        }
+    }
+
     componentDidMount() {
-        // console.log('hit');
         this.props.getUserCards(this.props.match.params.topic_id);
+    }
+
+    addNewFlachcard() {
+        const {description} = this.state;
+        const {addCard} = this.props;
+        addCard({description}).then(response => {
+            this.setState({cards: response.data});
+        })
     }
 
     render() {
@@ -38,6 +54,7 @@ const mapStateToProps = reduxState => {
 
 export default connect(mapStateToProps, 
     {
-        getUserCards
+        getUserCards,
+        addCard
     }
 )(TopicCards);

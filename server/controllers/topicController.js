@@ -6,10 +6,12 @@ module.exports = {
         res.status(200).send(userTopics);
     },
     addTopic: async (req, res) => {
-        const {user_id, name, description} = req.body; // values for making a topic
-        // const {user_id} = req.session.user;
+        const {name, description} = req.body; // values for making a topic //coming from the front
+        // console.log('addTopic req.body')
+        // console.log(req.body);
+        const {user_id} = req.session.user; //coming from the backend
         const db = req.app.get('db');
-        const add = await db.topic.add_topic([user_id, name, description])  
+        const add = await db.topic.add_topic(user_id, name, description)  
             .then(topics => {
                 res.status(200).send(topics);
             })

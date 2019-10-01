@@ -4,6 +4,7 @@
   border: solid #18c4be;
   border-radius: 5px;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .submit-btn:hover, .register-container .register-center .form-container .reg-form #submit button:hover {

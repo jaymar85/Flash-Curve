@@ -6,9 +6,9 @@
     border: solid $primaryButton;
     border-radius: 5px;
     text-decoration: none;
-    
+    cursor: pointer;   
     &:hover {
         background: $hoverColor;
         border: solid $hoverColor;
     }  
-  }
+}

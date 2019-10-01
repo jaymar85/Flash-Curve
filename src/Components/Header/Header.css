@@ -1,12 +1,27 @@
-.submit-btn, .register-container .register-center .form-container .reg-form #submit button {
+.submit-btn, .register-container .register-center .form-container .reg-form #submit button, .link-wrap button, #logout-form button {
   color: white;
   background: #18c4be;
   border: solid #18c4be;
   border-radius: 5px;
   text-decoration: none;
+  cursor: pointer;
 }
 
-.submit-btn:hover, .register-container .register-center .form-container .reg-form #submit button:hover {
+.submit-btn:hover, .register-container .register-center .form-container .reg-form #submit button:hover, .link-wrap button:hover, #logout-form button:hover {
+  background: #00f9ed;
+  border: solid #00f9ed;
+}
+
+.submit-btn, .register-container .register-center .form-container .reg-form #submit button, .link-wrap button, #logout-form button {
+  color: white;
+  background: #18c4be;
+  border: solid #18c4be;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.submit-btn:hover, .register-container .register-center .form-container .reg-form #submit button:hover, .link-wrap button:hover, #logout-form button:hover {
   background: #00f9ed;
   border: solid #00f9ed;
 }
@@ -62,20 +77,6 @@
   height: 5vh;
 }
 
-.register-container .register-center .form-container .reg-form #submit button {
-  color: white;
-  border-radius: 2px;
-  background: #18c4be;
-  border: solid #18c4be;
-  border-radius: 5px;
-  text-decoration: none;
-}
-
-.register-container .register-center .form-container .reg-form #submit button:hover {
-  background: #00f9ed;
-  border: solid #00f9ed;
-}
-
 .nav {
   width: 100vw;
   height: 12vh;
@@ -95,6 +96,7 @@
 
 .nav .logo {
   width: 20vw;
+  margin-left: 1vw;
 }
 
 .loginForm {
@@ -112,16 +114,21 @@
 }
 
 .input-wrap {
-  width: 20vw;
+  width: 16vw;
+  height: 10vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
 }
 
 .input-wrap #username, .input-wrap #password {
@@ -130,36 +137,14 @@
   display: flex;
 }
 
-.titles {
-  height: 5vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-}
-
-.inputs {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-}
-
-p {
-  color: white;
-  margin-right: 60px;
+.add-username, .add-password {
+  border: solid #18c4be;
+  border: solid 1px #ccc;
+  border-radius: 3px;
 }
 
 .link-wrap {
-  width: 10vw;
+  width: 12vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -169,24 +154,11 @@ p {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-}
-
-.link-wrap button {
-  color: white;
-  background: #18c4be;
-  border: solid #18c4be;
-  border-radius: 5px;
-  text-decoration: none;
-}
-
-.link-wrap button:hover {
-  background: #00f9ed;
-  border: solid #00f9ed;
 }
 
 #logout-form {
-  width: 16vw;
-  height: 4vh;
+  width: 24vw;
+  height: 5vh;
   color: white;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -197,18 +169,5 @@ p {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-}
-
-#logout-form button {
-  color: white;
-  background: #18c4be;
-  border: solid #18c4be;
-  border-radius: 5px;
-  text-decoration: none;
-}
-
-#logout-form button:hover {
-  background: #00f9ed;
-  border: solid #00f9ed;
 }
 /*# sourceMappingURL=Header.css.map */
