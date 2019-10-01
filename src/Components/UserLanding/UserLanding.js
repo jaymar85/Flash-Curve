@@ -15,7 +15,7 @@ class UserLanding extends Component {
             description: ''
         }
         this.addNewTopic = this.addNewTopic.bind(this);
-        this.handleInput = this.handleInput.bind(this);
+        this.handleTopicInput = this.handleTopicInput.bind(this);
     }
 
     componentDidMount() {
@@ -25,13 +25,12 @@ class UserLanding extends Component {
     addNewTopic() {
         const {name, description} = this.state;
         const { addTopic } = this.props;
-        addTopic({ name, description})
-            .then(response => {
-            this.setState({topics: response.data})
+        addTopic({ name, description}).then(results => {
+            this.setState({topics: results.data})
         })
     }
 
-    handleInput(e) {
+    handleTopicInput(e) {
         this.setState({ [e.target.name]: e.target.value }); 
     };
 
@@ -71,7 +70,7 @@ class UserLanding extends Component {
                             name="name"
                             type="text"
                             placeholder="Name your case"
-                            onChange={this.handleInput}
+                            onChange={this.handleTopicInput}
                             />
                         <label>description</label>
                             <input 
@@ -79,7 +78,7 @@ class UserLanding extends Component {
                             name="description"
                             type="text"
                             placeholder="Describe your case"
-                            onChange={this.handleInput}
+                            onChange={this.handleTopicInput}
                             />
                             <button className="add-sum-mow" onClick={this.addNewTopic}>Add</button>
                     </form>

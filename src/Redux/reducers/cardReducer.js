@@ -64,10 +64,11 @@ export function updateCard() {
         payload: axios.put('/api/flashcard')
     }
 }
-export function addCard() {
+export function addCard(topic_id, newCard) { ////////////////////////////////////////////////////////
+    console.log(newCard);
     return {
         type: ADD_CARD,
-        payload: axios.post('/api/create')
+        payload: axios.post(`/api/flashcard/${topic_id}`, newCard)
     }
 }
 export function deleteCard() {
@@ -113,7 +114,7 @@ export default function Reducer(state=initialState, action) {
 
         /////////// FLASHCARD cases /////////////
         case `${GET_USER_CARDS}_FULFILLED`:
-            console.log(payload);
+                // console.log(payload);
             return {
                 ...state,
                 cards: payload.data
@@ -123,8 +124,8 @@ export default function Reducer(state=initialState, action) {
                 ...state,
                 cards: payload.data
             };
-        case `${ADD_CARD}_FULFILLED`:
-            // console.log(payload.data);
+        case `${ADD_CARD}_FULFILLED`: //////////////////////////////////////////////////////////
+            console.log(payload);
             return {
                 ...state,
                 cards: payload.data

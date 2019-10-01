@@ -42,7 +42,7 @@ app.put('/api/topic_description', topicController.editTopicDescription);
 // Flash Cards
 app.get('/api/flashcard/:topic_id', cardController.getFlashcard);
 app.get('/api/cards/card_id', cardController.getFlashcard);
-app.post('/api/create', cardController.addFlashcard);
+app.post('/api/flashcard/:topic_id', cardController.addFlashcard);
 app.put('/api/flashcard', cardController.editFlashcard);
 app.delete('/api/flashcard', cardController.deleteFlashcard);
 

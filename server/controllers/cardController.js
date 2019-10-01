@@ -6,10 +6,13 @@ module.exports = {
         res.status(200).send(cardGet);
     }, 
     addFlashcard: async (req, res) => {
-        const {description} = req.body; //coming from frontend
+        const {description} = req.body; 
+        console.log(description);
         const topic_id = +req.params.topic_id;
+        console.log(topic_id)
         const db = req.app.get('db');
-        const cardCreate = await db.cards.add_cards(topic_id, description)
+
+        await db.cards.add_cards(topic_id, description)
             .then(cards => {
                 res.status(200).json(cards);
             })
