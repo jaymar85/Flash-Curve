@@ -1,7 +1,13 @@
 .flashcard {
-    width: 20vw;
-    height: 20vh;
-    border: 1px solid #18c4be;
-    border-radius: 3px;
+    height: 18vh;
+    background-color: #fff;
+    margin-bottom: 30px;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.3);
+    flex-direction: column;
+    align-items: flex-start;
+    box-sizing: border-box;
+    padding: 20px;
+    width: 60vw;
+    margin: 0 auto;
+    box-sizing: border-box;
 }

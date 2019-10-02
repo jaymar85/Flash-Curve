@@ -2,80 +2,68 @@
 @import '../../styles/mixins';
 @import '../../styles/components';
 
-.sub-nav {
+.topic-content {
+    width: 60vw;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.add-container {
+    height: 22vh;
+    background-color: white;
+    border: 1px solid #18c4be;
+    border-radius: 3px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.3);
+    flex-direction: column;
+    align-items: flex-start;
+    box-sizing: border-box;
+    padding: 14px;
+}
+
+.input-wrap {
     width: 100vw;
     display: flex;
-    justify-content: center;
-    border: solid #18c4be;
-    opacity: 0.80;
-    background-color: #18c4be;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,.5);
-}
-
-.topicslist, .statsheet, .profile {
-    width: 30vw;
-    color: white;
-    text-underline-position: none;
-    background: none;
-    background-color: transparent;
-    outline: none;
-    border: none;
-    cursor: pointer;
-}
-
-.create-topic {
-    @extend .submit-btn;
-    position: fixed;
-    width: 3rem;
-    height: 3rem;
-    background: #18c4be;
-    margin: 0;
-    border-radius: 50%;
-    border: none;
-    right: 36px;
-    bottom: 34px;   
-    font-size: 190%;
-    outline: none;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,.5);
-}
-
-////////// Add Topics Form ///////////
-.pop-up-form {
-    width: 40vw;
-    height: 18vh;
-    display: flex;
-    align-items: center;
-    // justify-content: space-between;
-    flex-direction: column;
-    border: 1px solid gray;
-    border-radius: 5px;
-    // @include flex();
-    // justify-content: center;  
+    justify-content: space-evenly;
+    align-items: baseline;
 }
 
 .add-name, .add-description {
-    border: solid #18c4be; 
-    border:solid 1px #ccc;
-    border-radius: 3px;
+    width: 30vw;
+    outline: none;
+    border: none;
+    border-bottom: solid #18c4be;
+    margin-bottom: 6px;
 }
 
-// .new-topic {
-//     width: 30vw;
-//     height: 30vh;
-//     display: flex;
-//     flex-direction: column;
-//     // width: 50vw;
-//     // height: 50vh;
-//     // margin-top: 18vh;
-//     // box-shadow: 0 2px 4px 0 rgba(0,0,0,.5);   
-// }
+.add-btn {
+    @extend .submit-btn;
+    outline: none;
+    width: 1.70rem;
+    height: 1.70rem;
+    background: #18c4be;
+    color: white;
+    margin: 0;
+    border-radius: 50%;
+    line-height: 1.00;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.5);
+}
 
-// .add-form {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: space-evenly;
-// }
+.topics {
+    height: 18vh;
+    background-color: #fff;
+    margin-bottom: 30px;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.3);
+    flex-direction: column;
+    align-items: flex-start;
+    box-sizing: border-box;
+    padding: 20px;
+}
 
-.add-sum-mow {
-    @extend .submit-btn;    
+h3 {
+    margin: 12px;
+    font-family: Helvetica;
 }

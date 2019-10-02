@@ -98,6 +98,3 @@ export default connect(mapStateToProps,
         registerUser
     }  
 )(Register);
-
-// onSubmit={this.handleSubmit}
-// <button type="submit" onClick={this.handleSubmit}>submit</button>

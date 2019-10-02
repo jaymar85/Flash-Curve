@@ -45,4 +45,3 @@ VALUES
 ($1, $2);
 
 -- createing note cards
-INSERT INTO 

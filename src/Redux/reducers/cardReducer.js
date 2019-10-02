@@ -45,10 +45,10 @@ export function addTopic(newCase) {
     // newCase = new object
     // relaying and shooting the info to the back
 }
-export function deleteTopic() {
+export function deleteTopic(topic_id) {                            
     return {
         type: DELETE_TOPIC,
-        payload: axios.delete('/api/topic')
+        payload: axios.delete(`/api/topic/${topic_id}`)
     }
 } 
 // FLASHCARD functions
@@ -64,17 +64,17 @@ export function updateCard() {
         payload: axios.put('/api/flashcard')
     }
 }
-export function addCard(topic_id, newCard) { ////////////////////////////////////////////////////////
+export function addCard(topic_id, newCard) { 
     console.log(newCard);
     return {
         type: ADD_CARD,
         payload: axios.post(`/api/flashcard/${topic_id}`, newCard)
     }
 }
-export function deleteCard() {
+export function deleteCard(card_id, topic_id) {
     return {
         type: DELETE_CARD,
-        payload: axios.put('/api/flashcard')
+        payload: axios.delete(`/api/flashcard/${card_id}`, topic_id)
     }
 }
 
@@ -114,7 +114,6 @@ export default function Reducer(state=initialState, action) {
 
         /////////// FLASHCARD cases /////////////
         case `${GET_USER_CARDS}_FULFILLED`:
-                // console.log(payload);
             return {
                 ...state,
                 cards: payload.data
@@ -124,13 +123,13 @@ export default function Reducer(state=initialState, action) {
                 ...state,
                 cards: payload.data
             };
-        case `${ADD_CARD}_FULFILLED`: //////////////////////////////////////////////////////////
-            console.log(payload);
+        case `${ADD_CARD}_FULFILLED`: 
+            // console.log(payload);
             return {
                 ...state,
                 cards: payload.data
             };
-        case `${DELETE_CARD}_FULFILLED`:
+        case `${DELETE_CARD}_FULFILLED`:        
             return {
             ...state,
             cards: payload.data

@@ -7,11 +7,8 @@ module.exports = {
     }, 
     addFlashcard: async (req, res) => {
         const {description} = req.body; 
-        console.log(description);
         const topic_id = +req.params.topic_id;
-        console.log(topic_id)
         const db = req.app.get('db');
-
         await db.cards.add_cards(topic_id, description)
             .then(cards => {
                 res.status(200).json(cards);
@@ -27,9 +24,13 @@ module.exports = {
         res.status(200).send(cards);
     },
     deleteFlashcard: async (req, res) => {
-        const {topic_id, card_id} = req.body;
+        // const {topic_id, card_id} = req.body;
+        const card_id = +req.params.card_id;
+        const topic_id = +req.body.topic_id;
+        console.log(req.params);
+        // const {user_id} = req.session.user;
         const db = req.app.get('db');
-        const cardDestroy = await db.cards.delete_card([topic_id, card_id]);
+        const cardDestroyer = await db.cards.delete_card(topic_id, card_id); //sql $1, $2
         res.status(200).send(cards);        
     }
 };

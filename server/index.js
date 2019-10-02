@@ -28,6 +28,7 @@ app.use(session({
 }))
 
 /////////////// Endpoints ////////////////
+
 // Authentication 
 app.get('/auth/get_session', authController.getSession);
 app.post('/auth/register', authController.register);
@@ -36,15 +37,15 @@ app.post('/auth/logout', authController.logout);
 // Topics 
 app.get('/api/topics', topicController.getTopic);
 app.post('/api/topic', topicController.addTopic);
-app.delete('/api/topic', topicController.deleteTopic);
 app.put('/api/topic_name', topicController.editTopicName);
 app.put('/api/topic_description', topicController.editTopicDescription);
+app.delete('/api/topic/:topic_id', topicController.deleteTopic);
 // Flash Cards
 app.get('/api/flashcard/:topic_id', cardController.getFlashcard);
 app.get('/api/cards/card_id', cardController.getFlashcard);
 app.post('/api/flashcard/:topic_id', cardController.addFlashcard);
 app.put('/api/flashcard', cardController.editFlashcard);
-app.delete('/api/flashcard', cardController.deleteFlashcard);
+app.delete('/api/flashcard/:card_id', cardController.deleteFlashcard);
 
 app.listen(SERVER_PORT, () => {
     console.log(`Server listening on ${SERVER_PORT}`)

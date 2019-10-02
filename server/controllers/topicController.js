@@ -32,10 +32,13 @@ module.exports = {
         return res.status(200).send(update);
     },
     deleteTopic: async (req, res) => {
-        const {topic_id, user_id} = req.body;
+        const topic_id = +req.params.topic_id;
+        const {user_id} = req.session.user;
+        // console.log(req.params.topic_id);
         const db = req.app.get('db');
-        const destroy = await db.topic.delete_topic(topic_id).then(topics => {
-            return res.status(200).send('Stack deleted');
-        });
+        const topics = await db.topic.delete_topic(topic_id, user_id);
+            // console.log(topics);
+        res.status(200).send(topics);
+    
     }
 };

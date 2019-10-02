@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './TopicCards.scss'
 // import {Link} from "react-router-dom";
 import {connect} from 'react-redux';
-import {getUserCards, addCard } from '../../Redux/reducers/cardReducer';
+import {getUserCards, addCard , deleteCard} from '../../Redux/reducers/cardReducer';
 
 class TopicCards extends Component {
 
@@ -12,6 +12,7 @@ class TopicCards extends Component {
             description: ''
         }     
         this.addNewCard = this.addNewCard.bind(this);
+        this.deleteThisCard = this.deleteThisCard.bind(this);
         this.handleCardInput = this.handleCardInput.bind(this);   
     }
 
@@ -21,7 +22,6 @@ class TopicCards extends Component {
 
     addNewCard() {        
         if (!this.state.description) return;
-
         const {description} = this.state;
         const {addCard} = this.props;
         addCard(this.props.match.params.topic_id, {description})
@@ -34,13 +34,19 @@ class TopicCards extends Component {
         // })
     }
 
+    deleteThisCard(card_id) {
+        const { deleteCard } = this.props;
+        deleteCard(card_id).then(results => {
+            this.setState({cards: results.data});
+        })
+    }
+
     handleCardInput(value) {
         this.setState({ description: value});
     }
 
     render() {
-        
-        // console.log(this.props.cards);
+        console.log(this.props.cards);
         const cardDisplay = this.props.cards.map((cards, index) => {
             return (
                 <div key={index} className='flashcard'>  
@@ -55,10 +61,9 @@ class TopicCards extends Component {
         })
 
         return (
-            <div>
+            <div className="hello">
                 <h1>Topic Cards {this.props.match.params.topic_id}</h1>
-                <div>
-                    
+                <div>            
                     <input 
                     className="add-description"
                     name="description"
@@ -87,6 +92,7 @@ const mapStateToProps = reduxState => {
 export default connect(mapStateToProps, 
     {
         getUserCards,
-        addCard
+        addCard,
+        deleteCard
     }
 )(TopicCards);

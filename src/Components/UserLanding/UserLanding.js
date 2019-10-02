@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import './UserLanding.scss'
-// import axios from 'axios';
 import {Link} from "react-router-dom";
 import {connect} from 'react-redux';
-import {accessUserTopics, addTopic} from '../../Redux/reducers/cardReducer';
+import {accessUserTopics, addTopic, deleteTopic} from '../../Redux/reducers/cardReducer';
 
 class UserLanding extends Component {
 
@@ -12,9 +11,11 @@ class UserLanding extends Component {
         this.state = {
             topics: [],
             name: '',
-            description: ''
+            description: '',
+            showTopicMenu: false
         }
         this.addNewTopic = this.addNewTopic.bind(this);
+        this.deleteThisTopic = this.deleteThisTopic.bind(this);
         this.handleTopicInput = this.handleTopicInput.bind(this);
     }
 
@@ -23,10 +24,19 @@ class UserLanding extends Component {
     }
 
     addNewTopic() {
+        if (!this.state.description) return;
         const {name, description} = this.state;
-        const { addTopic } = this.props;
-        addTopic({ name, description}).then(results => {
+        const { addTopic, topic_id } = this.props;
+        addTopic({ name, description }).then(results => {
             this.setState({topics: results.data})
+        })
+    }
+    deleteThisTopic(topic_id) {    
+        const confirmed = window.confirm('Delete this Topic?');
+        if (!confirmed) return;                  
+        const {deleteTopic} = this.props;
+        deleteTopic(topic_id).then(results => {
+            this.setState({topics: results.data});
         })
     }
 
@@ -34,58 +44,58 @@ class UserLanding extends Component {
         this.setState({ [e.target.name]: e.target.value }); 
     };
 
+
+    hideTopicMenu() {
+        if(this.state.showTopicMenu === true) {
+            this.setState({showTopicMenu: false});
+        }
+    }
+
     render() {
+        const {showTopicMenu} = this.state;
         const topicsDisplay = this.props.topics.map((topic, i) => {
             return (
-                <div key={i} className='topics'>
+                <div key={i} className='topics' >
                     <Link to={`/topics/${topic.topic_id}`} >
-                        <h1>{topic.name}</h1>
+                        <h4>{topic.name}</h4>
                     </Link>
-                </div>
-            )
-        })
-            return (           
-            <div>        
-                <div className="sub-nav">
-                    <div className="topicslist">
-                        <Link to="/topics">Study Cases</Link>
-                    </div>
-                    <div className="statSheet">
-                        <Link>My Stats</Link>
-                    </div>
-                    <div className="profile">
-                        <Link to="/profile/user">My Profile</Link>
-                    </div>
-                </div>
-
-                <h1>User's Page</h1>
-                <h1>Topics</h1>
-                <div className="pop-up-form">
-                <h2>Add a new study case</h2>
+                    <button onClick={() => this.deleteThisTopic(topic.topic_id)}>-</button>
+                </div>              
+                    )
+                })
+        
+        return (                      
+        <div className="topic-content">   
+            <div className="add-container">
+                <h3>Add a study topic</h3>
                     <form className="add-form" name="add_topic">
-                        <label>name</label>
-                            <span/>
-                            <input 
-                            className="add-name"
-                            name="name"
-                            type="text"
-                            placeholder="Name your case"
-                            onChange={this.handleTopicInput}
-                            />
-                        <label>description</label>
-                            <input 
-                            className="add-description"
-                            name="description"
-                            type="text"
-                            placeholder="Describe your case"
-                            onChange={this.handleTopicInput}
-                            />
-                            <button className="add-sum-mow" onClick={this.addNewTopic}>Add</button>
+                        <div className="input-wrapper">
+                            <div className="name-input">
+                                <span/>
+                                <input 
+                                className="add-name"
+                                name="name"
+                                type="text"
+                                placeholder="Name your case"
+                                onChange={this.handleTopicInput}
+                                />
+                            </div>
+                            <div className="description-input">
+                                <input 
+                                className="add-description"
+                                name="description"
+                                type="text"
+                                placeholder="Describe your case"
+                                onChange={this.handleTopicInput}
+                                />
+                            </div>
+                        </div>                        
+                            <button className="add-btn" onClick={this.addNewTopic}>+</button>                        
                     </form>
                 </div>
-                <button className="create-topic">+</button>
-                {topicsDisplay}
-            </div>
+            {/*<button className="create-topic">+</button>*/}
+            {topicsDisplay}
+        </div>
         )
     }
 }
@@ -99,6 +109,9 @@ const mapStateToProps = reduxState => {
 export default connect(mapStateToProps, 
     {
         accessUserTopics,
-        addTopic
+        addTopic,
+        deleteTopic
     }
 )(UserLanding);
+
+// style={ {display: showTopicMenu ? 'flex' : 'none'} }
