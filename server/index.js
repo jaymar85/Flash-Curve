@@ -45,7 +45,7 @@ app.get('/api/flashcard/:topic_id', cardController.getFlashcard);
 app.get('/api/cards/card_id', cardController.getFlashcard);
 app.post('/api/flashcard/:topic_id', cardController.addFlashcard);
 app.put('/api/flashcard', cardController.editFlashcard);
-app.delete('/api/flashcard/:card_id', cardController.deleteFlashcard);
+app.delete('/api/flashcard/:card_id/:topic_id', cardController.deleteFlashcard);
 
 app.listen(SERVER_PORT, () => {
     console.log(`Server listening on ${SERVER_PORT}`)

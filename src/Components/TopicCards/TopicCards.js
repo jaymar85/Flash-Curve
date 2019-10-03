@@ -9,6 +9,7 @@ class TopicCards extends Component {
     constructor() {
         super();
         this.state = {
+            cards: [],
             description: ''
         }     
         this.addNewCard = this.addNewCard.bind(this);
@@ -17,6 +18,7 @@ class TopicCards extends Component {
     }
 
     componentDidMount() {
+        console.log(this.props.match.params.topic_id)
         this.props.getUserCards(this.props.match.params.topic_id);
     }
 
@@ -34,35 +36,38 @@ class TopicCards extends Component {
         // })
     }
 
-    deleteThisCard(card_id) {
+    deleteThisCard(topic_id, card_id) {
         const { deleteCard } = this.props;
-        deleteCard(card_id).then(results => {
-            this.setState({cards: results.data});
-        })
+        deleteCard(topic_id, card_id);
     }
+    
 
     handleCardInput(value) {
         this.setState({ description: value});
     }
 
     render() {
-        console.log(this.props.cards);
+        console.log(this.props.match.params.topic_id);
         const cardDisplay = this.props.cards.map((cards, index) => {
+            console.log(cards);
             return (
                 <div key={index} className='flashcard'>  
                     <h5>{cards.name}</h5>                    
                     <p>{cards.description}</p>  
+
+                    
                     <button 
+                    onClick={() => this.deleteThisCard(this.props.match.params.topic_id, cards.card_id)}
                     type="button"
                     className="delete-btn"
-                    >-</button>                 
+                    >-</button>                                  
                 </div>
             )
         })
 
         return (
             <div className="hello">
-                <h1>Topic Cards {this.props.match.params.topic_id}</h1>
+                <h1>Topic Cards {this.props.match.params.topic_id}</h1> 
                 <div>            
                     <input 
                     className="add-description"

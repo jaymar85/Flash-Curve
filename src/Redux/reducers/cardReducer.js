@@ -71,10 +71,10 @@ export function addCard(topic_id, newCard) {
         payload: axios.post(`/api/flashcard/${topic_id}`, newCard)
     }
 }
-export function deleteCard(card_id, topic_id) {
+export function deleteCard(topic_id, card_id) {
     return {
         type: DELETE_CARD,
-        payload: axios.delete(`/api/flashcard/${card_id}`, topic_id)
+        payload: axios.delete(`/api/flashcard/${card_id}/${topic_id}`)
     }
 }
 
