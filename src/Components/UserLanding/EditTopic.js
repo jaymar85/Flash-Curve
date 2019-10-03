@@ -13,18 +13,21 @@ class EditTopic extends Component {
         }
 
     }
+    // Name
     showEditName = () => {
         this.setState({editName: true, showTopicMenu: false});
     }
     hideEditName = () => {
         this.setState({editName: false});
     }
+
     showEditDescription = () => {
         this.setState({editDescription: true, showTopicMenu: false});
     }
     hideEditDescription = () => {
         this.setState({editDescription: false});
     }
+
     toggleTopicMenu = () => {
         const {showTopicMenu} = this.state;
         this.setState({showTopicMenu: !showTopicMenu});
@@ -36,11 +39,15 @@ class EditTopic extends Component {
         }
     }
 
-    handleUpdateNameText(val) {
+    handleInputNameText(val) {
         this.setState({text: val})
     }
 
-    updateTopicFieldsFinish = () => {
+    handleInputDescriptionText(val) {
+        this.setState({text: val})
+    }
+
+    updateTopicFields = () => {
         const {text, hideEditName, hideEditDescription} = this.state;
         const {id, updateThisTopicName, updateThisTopicDescription} = this.props;
         updateThisTopicName(id, text);
@@ -50,11 +57,10 @@ class EditTopic extends Component {
     }
 
     render() {
-        const {editName, editDescription, showTopicMenu, text} = this.state;
+        const {editName, editDescription, showTopicMenu, text, hideEditName, hideEditDescription} = this.state;
         const {updateThisTopicName, updateThisTopicDescription, id, name, description} = this.props; //id = topic_id
 
-        return (
-            
+        return (      
             <section className="Topic_parent" onClick={this.hideTopicMenu}> 
                 <div className="topic_content">
                     <div className="topic_hamburger">
@@ -67,41 +73,61 @@ class EditTopic extends Component {
                         </div>
                     </div>
                 <Link to={`/topics/${id}`}>My Flash Cards</Link>
-                {   editName 
-                    ?
+                {   editName ?
                     <div>
+                        <textarea 
+                        className="name_textbox" 
+                        value={text} 
+                        onChange={(e) => this.handleInputNameText(e.target.value)}
+                        
+                        ></textarea>
+                        <div>
+                            <button id="confirm_name_update"
+                            onClick={this.updateTopicFields}
+                            >Update</button>
+                            <button id="cancel_name_update" 
+                            onClick={this.hideEditName}
+                            >Cancel</button>
+                        </div>
                     {name}
                     {id}
-                    {text}
-                    {this.hideEditName}
+                    {text}                    
                     {updateThisTopicName}
                     </div>
                     :
                     <span className="name_text">{text}</span>
                 }
 
-                {   editDescription
-                    ?
+                {   editDescription ?
                     <div>
+                        <textarea 
+                        className="description_textbox" 
+                        value={text} 
+                        onChange={(e) => this.handleInputDescriptionText(e.target.value)}
+                        
+                        ></textarea>
+                        <div>
+                            <button id="edit_controls_name"
+                            className="confirm_description_update"
+                            onClick={this.updateTopicFields}
+                            >Update</button>
+                            <button id="edit_controls_description"
+                            className="cancel_name_update" 
+                            onClick={this.hideEditDescription}
+                            >Cancel</button>
+                        </div>
                     {description}
                     {id}
-                    {text}
-                    {this.hideEditDescription}
+                    {text}                    
                     {updateThisTopicDescription}
                     </div>
                     :
                     <span className="description_text">{text}</span>                    
                 }
-
                 </div>
             </section>
-            
         )
     }
 }
 
 export default EditTopic;
-
-// create state with edit status to false *
-// conditional render based on edit status *
-// buttons to toggle edit status *
