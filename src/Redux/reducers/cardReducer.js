@@ -31,7 +31,7 @@ export function updateTopicName() {
         payload: axios.put('/api/topic_name')
     }
 }
-export function registerUserDesc() {
+export function updateTopicDescription() {
     return {
         type: UPDATE_TOPIC_DESCRIPTION,
         payload: axios.put('/api/topic_description')
@@ -65,14 +65,14 @@ export function updateCard() {
     }
 }
 export function addCard(topic_id, newCard) { 
-    console.log(newCard);
+    // console.log(newCard);
     return {
         type: ADD_CARD,
         payload: axios.post(`/api/flashcard/${topic_id}`, newCard)
     }
 }
 export function deleteCard(topic_id, card_id) {
-    console.log(card_id);
+    // console.log(card_id);
     return {
         type: DELETE_CARD,
         payload: axios.delete(`/api/flashcard/${card_id}/${topic_id}`)

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './TopicCards.scss'
 // import {Link} from "react-router-dom";
 import {connect} from 'react-redux';
-import {getUserCards, addCard , deleteCard} from '../../Redux/reducers/cardReducer';
+import {getUserCards, addCard , deleteCard, } from '../../Redux/reducers/cardReducer';
 
 class TopicCards extends Component {
 
@@ -14,7 +14,8 @@ class TopicCards extends Component {
         }     
         this.addNewCard = this.addNewCard.bind(this);
         this.deleteThisCard = this.deleteThisCard.bind(this);
-        this.handleCardInput = this.handleCardInput.bind(this);   
+        this.handleCardInput = this.handleCardInput.bind(this); 
+        
     }
 
     componentDidMount() {
@@ -41,6 +42,9 @@ class TopicCards extends Component {
         deleteCard(topic_id, card_id);
     }
     
+    updateThisCard() {
+
+    }
 
     handleCardInput(value) {
         this.setState({ description: value});
@@ -49,7 +53,7 @@ class TopicCards extends Component {
     render() {
         console.log(this.props.match.params.topic_id);
         const cardDisplay = this.props.cards.map((cards, index) => {
-            console.log(cards);
+            // console.log(cards);
             return (
                 <div key={index} className='flashcard'>  
                     <h5>{cards.name}</h5>                    
@@ -68,6 +72,7 @@ class TopicCards extends Component {
                 <h1>Topic Cards {this.props.match.params.topic_id}</h1> 
                 <div>            
                     <input 
+                    autoComplete="off"
                     className="add-description"
                     name="description"
                     type="text"
@@ -96,6 +101,7 @@ export default connect(mapStateToProps,
     {
         getUserCards,
         addCard,
-        deleteCard
+        deleteCard,
+        
     }
 )(TopicCards);

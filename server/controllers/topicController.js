@@ -37,7 +37,7 @@ module.exports = {
         // console.log(req.params.topic_id);
         const db = req.app.get('db');
         const topics = await db.topic.delete_topic(topic_id, user_id);
-            // console.log(topics);
+        // console.log(topics);
         res.status(200).send(topics);
     
     }

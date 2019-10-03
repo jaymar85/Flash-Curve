@@ -48,7 +48,7 @@ class Register extends Component {
             <h1>Welcome to Flash Curve!</h1>
             <h4>To setup an account please register below.</h4>
             <div className="form-container">
-                <form className="reg-form" name="register" >
+                <form className="reg-form" name="register" autoComplete="off">
 
                     <div id="username">
                     <label>Username</label>

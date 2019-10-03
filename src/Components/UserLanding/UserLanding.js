@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import './UserLanding.scss'
-import {Link} from "react-router-dom";
+import EditTopic from './EditTopic'
+// import {Link} from "react-router-dom";
 import {connect} from 'react-redux';
-import {accessUserTopics, addTopic, deleteTopic} from '../../Redux/reducers/cardReducer';
+import {accessUserTopics, addTopic, deleteTopic, updateTopicName, updateTopicDescription} from '../../Redux/reducers/cardReducer';
 
 class UserLanding extends Component {
 
@@ -12,10 +13,11 @@ class UserLanding extends Component {
             topics: [],
             name: '',
             description: '',
-            showTopicMenu: false
         }
         this.addNewTopic = this.addNewTopic.bind(this);
         this.deleteThisTopic = this.deleteThisTopic.bind(this);
+        this.updateThisTopicName =  this.updateThisTopicName.bind(this);
+        this.updateThisTopicDescription = this.updateThisTopicDescription.bind(this);
         this.handleTopicInput = this.handleTopicInput.bind(this);
     }
 
@@ -39,36 +41,47 @@ class UserLanding extends Component {
             this.setState({topics: results.data});
         })
     }
+    updateThisTopicName() { 
+        const {name} = this.state;
+        const {updateTopicName} = this.props;
+        updateTopicName({name}).then(results => {
+            this.setState({topics: results.data});
+        })
+    }
+    updateThisTopicDescription() {
+        const {description} = this.state;
+        const {updateTopicDescription} = this.props;
+        updateTopicDescription({description}).then(results => {
+            this.setState({topics: results.data});
+        })
+    }
 
     handleTopicInput(e) {
         this.setState({ [e.target.name]: e.target.value }); 
     };
 
-
-    hideTopicMenu() {
-        if(this.state.showTopicMenu === true) {
-            this.setState({showTopicMenu: false});
-        }
-    }
-
     render() {
-        const {showTopicMenu} = this.state;
-        const topicsDisplay = this.props.topics.map((topic, i) => {
-            return (
-                <div key={i} className='topics' >
-                    <Link to={`/topics/${topic.topic_id}`} >
-                        <h4>{topic.name}</h4>
-                    </Link>
-                    <button onClick={() => this.deleteThisTopic(topic.topic_id)}>-</button>
-                </div>              
-                    )
-                })
         
+        const topicsDisplay = this.props.topics.map((topic, i) => {
+            // move display info into EditTopic *
+            return (
+                <div  className='topics' >
+                    <EditTopic key={i}                   
+                        id={topic.id}
+                        name={topic.name}
+                        description={topic.description}
+                        updateThisTopicName={this.updateThisTopicName}
+                        updateThisTopicDescription={this.updateThisTopicDescription}
+                    />
+                </div>              
+            )
+        })
+
         return (                      
         <div className="topic-content">   
             <div className="add-container">
                 <h3>Add a study topic</h3>
-                    <form className="add-form" name="add_topic">
+                    <form className="add-form" name="add_topic" autoComplete="off">
                         <div className="input-wrapper">
                             <div className="name-input">
                                 <span/>
@@ -110,7 +123,9 @@ export default connect(mapStateToProps,
     {
         accessUserTopics,
         addTopic,
-        deleteTopic
+        deleteTopic,
+        updateTopicName,
+        updateTopicDescription
     }
 )(UserLanding);
 
