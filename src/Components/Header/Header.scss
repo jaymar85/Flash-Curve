@@ -11,7 +11,7 @@ $hoverColor: #00f9ed;
 .nav {
     width: 100vw;
     height: 12vh;
-    background: #26384c;
+    background: rgb(3, 57, 80);
     @include flex();
     justify-content: space-between;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.5);

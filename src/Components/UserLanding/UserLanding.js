@@ -78,7 +78,7 @@ class UserLanding extends Component {
         })
 
         return (                      
-        <div className="topic-content">   
+        <div className="topic-content-section">   
             <div className="add-container">
                 <h3>Add a study topic</h3>
                     <form className="add-form" name="add_topic" autoComplete="off">
@@ -129,4 +129,3 @@ export default connect(mapStateToProps,
     }
 )(UserLanding);
 
-// style={ {display: showTopicMenu ? 'flex' : 'none'} }
