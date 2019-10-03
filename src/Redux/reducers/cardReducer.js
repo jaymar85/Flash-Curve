@@ -72,6 +72,7 @@ export function addCard(topic_id, newCard) {
     }
 }
 export function deleteCard(topic_id, card_id) {
+    console.log(card_id);
     return {
         type: DELETE_CARD,
         payload: axios.delete(`/api/flashcard/${card_id}/${topic_id}`)

@@ -53,9 +53,7 @@ class TopicCards extends Component {
             return (
                 <div key={index} className='flashcard'>  
                     <h5>{cards.name}</h5>                    
-                    <p>{cards.description}</p>  
-
-                    
+                    <p>{cards.description}</p>
                     <button 
                     onClick={() => this.deleteThisCard(this.props.match.params.topic_id, cards.card_id)}
                     type="button"

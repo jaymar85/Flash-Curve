@@ -1,7 +1,7 @@
 DELETE FROM cards
 WHERE card_id = $2;
 
-SELECT c.topic_id, c.description, t.user_id
+SELECT c.card_id, c.topic_id, c.description, t.user_id
 FROM cards c
 INNER JOIN topics t 
 ON c.topic_id = t.topic_id

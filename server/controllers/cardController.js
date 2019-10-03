@@ -24,12 +24,12 @@ module.exports = {
         res.status(200).send(cards);
     },
     deleteFlashcard: async (req, res) => {
-        const card_id = +req.params.card_id;
-        const topic_id = +req.params.topic_id;
-        console.log(req.params, req.body);
+        const {topic_id, card_id} = req.params;
+        // const topic_id = req.params.topic_id; //cannot pass req.body on a delete post
+        // console.log(req.params, req.body);
         // const {user_id} = req.session.user;
         const db = req.app.get('db');
-        const cardDestroyer = await db.cards.delete_card(topic_id, card_id); //sql $1, $2
+        const cardDestroyer = await db.cards.delete_card(Number(topic_id), Number(card_id)); //sql $1, $2
         res.status(200).send(cardDestroyer);     
         // res.status(200).send(card);          
     }
