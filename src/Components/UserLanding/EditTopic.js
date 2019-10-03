@@ -9,11 +9,11 @@ class EditTopic extends Component {
             editName: false,
             editDescription: false,
             showTopicMenu: false,
-            text: ''
+            newName: ''
         }
 
     }
-    // Name
+    ////////// Topic Menu //////////
     showEditName = () => {
         this.setState({editName: true, showTopicMenu: false});
     }
@@ -27,7 +27,7 @@ class EditTopic extends Component {
     hideEditDescription = () => {
         this.setState({editDescription: false});
     }
-
+    ////////// Topic Menu //////////
     toggleTopicMenu = () => {
         const {showTopicMenu} = this.state;
         this.setState({showTopicMenu: !showTopicMenu});
@@ -38,15 +38,13 @@ class EditTopic extends Component {
             this.setState({showTopicMenu: false});
         }
     }
-
-    handleInputNameText(val) {
-        this.setState({text: val})
+    ////////// Handle Input //////////
+    handleInputNameText(e) {
+        this.setState({[e.target.name]: e.target.value})
     }
-
     handleInputDescriptionText(val) {
         this.setState({text: val})
     }
-
     updateTopicFields = () => {
         const {text, hideEditName, hideEditDescription} = this.state;
         const {id, updateThisTopicName, updateThisTopicDescription} = this.props;
@@ -59,7 +57,7 @@ class EditTopic extends Component {
     render() {
         const {editName, editDescription, showTopicMenu, text, hideEditName, hideEditDescription} = this.state;
         const {updateThisTopicName, updateThisTopicDescription, id, name, description} = this.props; //id = topic_id
-
+        console.log(id)
         return (      
             <section className="Topic_parent" onClick={this.hideTopicMenu}> 
                 <div className="topic_content">
@@ -75,12 +73,12 @@ class EditTopic extends Component {
                 <Link to={`/topics/${id}`}>My Flash Cards</Link>
                 {   editName ?
                     <div>
-                        <textarea 
+                        <input 
                         className="name_textbox" 
-                        value={text} 
-                        onChange={(e) => this.handleInputNameText(e.target.value)}
-                        
-                        ></textarea>
+                        name="newName" 
+                        onChange={(e) => this.handleInputNameText(e)}
+                        defaultValue={name}
+                        ></input>
                         <div>
                             <button id="confirm_name_update"
                             onClick={this.updateTopicFields}
@@ -89,41 +87,18 @@ class EditTopic extends Component {
                             onClick={this.hideEditName}
                             >Cancel</button>
                         </div>
-                    {name}
+                    
                     {id}
                     {text}                    
                     {updateThisTopicName}
                     </div>
                     :
+                    <div>
+                    {name}
                     <span className="name_text">{text}</span>
+                    </div>
                 }
 
-                {   editDescription ?
-                    <div>
-                        <textarea 
-                        className="description_textbox" 
-                        value={text} 
-                        onChange={(e) => this.handleInputDescriptionText(e.target.value)}
-                        
-                        ></textarea>
-                        <div>
-                            <button id="edit_controls_name"
-                            className="confirm_description_update"
-                            onClick={this.updateTopicFields}
-                            >Update</button>
-                            <button id="edit_controls_description"
-                            className="cancel_name_update" 
-                            onClick={this.hideEditDescription}
-                            >Cancel</button>
-                        </div>
-                    {description}
-                    {id}
-                    {text}                    
-                    {updateThisTopicDescription}
-                    </div>
-                    :
-                    <span className="description_text">{text}</span>                    
-                }
                 </div>
             </section>
         )
@@ -131,3 +106,30 @@ class EditTopic extends Component {
 }
 
 export default EditTopic;
+
+// {   editDescription ?
+//     <div>
+//         <textarea 
+//         className="description_textbox" 
+//         value={text} 
+//         onChange={(e) => this.handleInputDescriptionText(e.target.value)}
+        
+//         ></textarea>
+//         <div>
+//             <button id="edit_controls_name"
+//             className="confirm_description_update"
+//             onClick={this.updateTopicFields}
+//             >Update</button>
+//             <button id="edit_controls_description"
+//             className="cancel_name_update" 
+//             onClick={this.hideEditDescription}
+//             >Cancel</button>
+//         </div>
+//     {description}
+//     {id}
+//     {text}                    
+//     {updateThisTopicDescription}
+//     </div>
+//     :
+//     <span className="description_text">{text}</span>                    
+// }

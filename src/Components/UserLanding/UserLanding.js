@@ -34,6 +34,7 @@ class UserLanding extends Component {
         })
     }
     deleteThisTopic(topic_id) {    
+        // console.log(topic_id)
         const confirmed = window.confirm('Delete this Topic?');
         if (!confirmed) return;                  
         const {deleteTopic} = this.props;
@@ -61,17 +62,19 @@ class UserLanding extends Component {
     };
 
     render() {
+        console.log(this.props.topics)
         
         const topicsDisplay = this.props.topics.map((topic, i) => {
-            // move display info into EditTopic *
+            
             return (
                 <div  className='topics' >
                     <EditTopic key={i}                   
-                        id={topic.id}
+                        id={topic.topic_id}
                         name={topic.name}
                         description={topic.description}
                         updateThisTopicName={this.updateThisTopicName}
                         updateThisTopicDescription={this.updateThisTopicDescription}
+                        deleteThisTopic={this.deleteThisTopic}
                     />
                 </div>              
             )
