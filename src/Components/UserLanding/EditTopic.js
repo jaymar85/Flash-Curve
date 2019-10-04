@@ -44,15 +44,15 @@ class EditTopic extends Component {
         this.setState({[e.target.name]: e.target.value})
     }
     handleInputDescriptionText(e) {
-        this.setState({[e.target.name]: e.target.value})
+        this.setState({[e.target.description]: e.target.value})
     }
-    ////////// Update //////////
+    ////////// Update  //////////
     updateTopicFields = () => {
         const {text, hideEditName, hideEditDescription} = this.state;
         const {id, updateThisTopicName, updateThisTopicDescription} = this.props;
         updateThisTopicName(id, text);
         updateThisTopicDescription(id, text);
-        hideEditName();
+        // hideEditName(); 
         hideEditDescription();
     }
 
@@ -64,11 +64,13 @@ class EditTopic extends Component {
         <div className="topics_container" onClick={this.hideTopicMenu}>
                     <div className="topic_hamburger">
                         <span className="hamburger" onClick={this.toggleTopicMenu}>:::</span>
-                        <Link className="to_flashcards" to={`/topics/${id}`}>My Flash Cards</Link>
+                        <Link className="to_flashcards" to={`/topics/${id}`}>Flash Cards</Link>
 
                         <div className="hamburger_menu" style={ {display: showTopicMenu ? "flex" : "none"} }>
                             <span onClick={this.showEditName}>Edit Name</span>     
-                            <span onClick={this.showEditDescription}>Edit Description</span>                       
+                            
+                            <span onClick={this.showEditDescription}>Edit Note</span>     
+                            
                             <span onClick={() => this.props.deleteThisTopic(id)}>Delete</span>
                         </div>
                     </div>
@@ -127,7 +129,6 @@ class EditTopic extends Component {
                     <span >{text}</span> 
                     </div>                   
                 }               
-
         </div>           
         )
     }

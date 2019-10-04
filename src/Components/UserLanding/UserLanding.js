@@ -28,13 +28,12 @@ class UserLanding extends Component {
     addNewTopic() {
         if (!this.state.description) return;
         const {name, description} = this.state;
-        const { addTopic, topic_id } = this.props;
+        const { addTopic } = this.props;  //deleted topic_id as it was not being used
         addTopic({ name, description }).then(results => {
             this.setState({topics: results.data})
         })
     }
     deleteThisTopic(topic_id) {    
-        // console.log(topic_id)
         const confirmed = window.confirm('Delete this Topic?');
         if (!confirmed) return;                  
         const {deleteTopic} = this.props;
@@ -62,10 +61,8 @@ class UserLanding extends Component {
     };
 
     render() {
-        console.log(this.props.topics)
-        
-        const topicsDisplay = this.props.topics.map((topic, i) => {
-            
+                
+        const topicsDisplay = this.props.topics.map((topic, i) => {            
             return (
                 <div >
                     <EditTopic key={i}                   
@@ -92,7 +89,7 @@ class UserLanding extends Component {
                                 className="add-name"
                                 name="name"
                                 type="text"
-                                placeholder="Name your case"
+                                placeholder="Name your topic"
                                 onChange={this.handleTopicInput}
                                 />
                             </div>
@@ -101,7 +98,7 @@ class UserLanding extends Component {
                                 className="add-description"
                                 name="description"
                                 type="text"
-                                placeholder="Describe your case"
+                                placeholder="Describe your goal for this topic"
                                 onChange={this.handleTopicInput}
                                 />
                             </div>

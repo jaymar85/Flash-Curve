@@ -19,7 +19,7 @@ class TopicCards extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props.match.params.topic_id)
+        // console.log(this.props.match.params.topic_id)
         this.props.getUserCards(this.props.match.params.topic_id);
     }
 
@@ -42,16 +42,14 @@ class TopicCards extends Component {
         deleteCard(topic_id, card_id);
     }
     
-    updateThisCard() {
-
-    }
+    updateThisCard() {}
 
     handleCardInput(value) {
         this.setState({ description: value});
     }
 
     render() {
-        console.log(this.props.match.params.topic_id);
+        // console.log(this.props.match.params.topic_id);
         const cardDisplay = this.props.cards.map((cards, index) => {
             // console.log(cards);
             return (
@@ -66,7 +64,7 @@ class TopicCards extends Component {
                 </div>
             )
         })
-
+        // Need to change line 72 of title
         return (
             <div className="hello">
                 <h1>Topic Cards {this.props.match.params.topic_id}</h1> 

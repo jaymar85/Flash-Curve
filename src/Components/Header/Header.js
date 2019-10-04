@@ -59,7 +59,7 @@ class Header extends React.Component {
                         <button type='submit' onClick={this.handleLogout}>Log Out</button> 
                     </div>
                     ) : (
-                    <form name='login' >
+                    <form name='login' autoComplete="off">
                         <div className="loginForm">
                             <div className="input-wrap">                           
                                 

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import './Register.scss';
-// import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { registerUser } from "../../Redux/reducers/userReducer";
