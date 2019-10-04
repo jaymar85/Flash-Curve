@@ -67,7 +67,7 @@ class UserLanding extends Component {
         const topicsDisplay = this.props.topics.map((topic, i) => {
             
             return (
-                <div  className='topics' >
+                <div >
                     <EditTopic key={i}                   
                         id={topic.topic_id}
                         name={topic.name}
@@ -109,7 +109,7 @@ class UserLanding extends Component {
                             <button className="add-btn" onClick={this.addNewTopic}>+</button>                        
                     </form>
                 </div>
-            {/*<button className="create-topic">+</button>*/}
+            
             {topicsDisplay}
         </div>
         )

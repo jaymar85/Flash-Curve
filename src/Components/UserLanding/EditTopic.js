@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {Link} from "react-router-dom";
-
+import './EditTopic.scss'
 
 class EditTopic extends Component {
     constructor() {
@@ -9,18 +9,19 @@ class EditTopic extends Component {
             editName: false,
             editDescription: false,
             showTopicMenu: false,
-            newName: ''
+            newName: '',
+            newDescription: ''
         }
 
     }
-    ////////// Topic Menu //////////
+    ////////// Show/Hide Name //////////
     showEditName = () => {
         this.setState({editName: true, showTopicMenu: false});
     }
     hideEditName = () => {
         this.setState({editName: false});
     }
-
+    ////////// Show/Hide Description //////////
     showEditDescription = () => {
         this.setState({editDescription: true, showTopicMenu: false});
     }
@@ -38,13 +39,14 @@ class EditTopic extends Component {
             this.setState({showTopicMenu: false});
         }
     }
-    ////////// Handle Input //////////
+    ////////// Handle Inputs //////////
     handleInputNameText(e) {
         this.setState({[e.target.name]: e.target.value})
     }
-    handleInputDescriptionText(val) {
-        this.setState({text: val})
+    handleInputDescriptionText(e) {
+        this.setState({[e.target.name]: e.target.value})
     }
+    ////////// Update //////////
     updateTopicFields = () => {
         const {text, hideEditName, hideEditDescription} = this.state;
         const {id, updateThisTopicName, updateThisTopicDescription} = this.props;
@@ -55,31 +57,30 @@ class EditTopic extends Component {
     }
 
     render() {
-        const {editName, editDescription, showTopicMenu, text, hideEditName, hideEditDescription} = this.state;
+        const {editName, editDescription, showTopicMenu, text} = this.state;
         const {updateThisTopicName, updateThisTopicDescription, id, name, description} = this.props; //id = topic_id
-        console.log(id)
-        return (      
-            <section className="Topic_parent" onClick={this.hideTopicMenu}> 
-                <div className="topic_content">
+        // console.log(id)
+        return (                 
+        <div className="topics_container" onClick={this.hideTopicMenu}>
                     <div className="topic_hamburger">
-                        <span onClick={this.toggleTopicMenu}>:::</span>
+                        <span className="hamburger" onClick={this.toggleTopicMenu}>:::</span>
+                        <Link className="to_flashcards" to={`/topics/${id}`}>My Flash Cards</Link>
 
-                        <div class="hamburger" style={ {display: showTopicMenu ? "flex" : "none"} }>
-                            <span onClick={this.showEditName}>Edit Name</span>
-                            <span onClick={this.showEditDescription}>Edit Description</span>
+                        <div className="hamburger_menu" style={ {display: showTopicMenu ? "flex" : "none"} }>
+                            <span onClick={this.showEditName}>Edit Name</span>     
+                            <span onClick={this.showEditDescription}>Edit Description</span>                       
                             <span onClick={() => this.props.deleteThisTopic(id)}>Delete</span>
                         </div>
                     </div>
-                <Link to={`/topics/${id}`}>My Flash Cards</Link>
                 {   editName ?
-                    <div>
+                    <div className="name_input_div">
                         <input 
                         className="name_textbox" 
                         name="newName" 
                         onChange={(e) => this.handleInputNameText(e)}
                         defaultValue={name}
                         ></input>
-                        <div>
+                        <div className="edit_name_btn">
                             <button id="confirm_name_update"
                             onClick={this.updateTopicFields}
                             >Update</button>
@@ -88,48 +89,48 @@ class EditTopic extends Component {
                             >Cancel</button>
                         </div>
                     
-                    {id}
                     {text}                    
                     {updateThisTopicName}
                     </div>
                     :
-                    <div>
-                    {name}
-                    <span className="name_text">{text}</span>
+                    <div className="name_text">
+                    {name}                    
+                    <span >{text}</span>
                     </div>
                 }
+                
 
-                </div>
-            </section>
+                
+                {   editDescription ?
+                    <div>
+                        <input 
+                        className="description_textbox" 
+                        name="newDescription" 
+                        onChange={(e) => this.handleInputDescriptionText(e)}
+                        defaultValue={description}
+                        ></input>
+                        <div className="edit_description_btn">
+                            <button id="confirm_description_update"
+                            onClick={this.updateTopicFields}
+                            >Update</button>
+                            <button id="cancel_description_update"
+                            onClick={this.hideEditDescription}
+                            >Cancel</button>
+                        </div>
+                        
+                    {text}                    
+                    {updateThisTopicDescription}
+                    </div>
+                    :
+                    <div className="description_text">
+                    {description}
+                    <span >{text}</span> 
+                    </div>                   
+                }               
+
+        </div>           
         )
     }
 }
 
 export default EditTopic;
-
-// {   editDescription ?
-//     <div>
-//         <textarea 
-//         className="description_textbox" 
-//         value={text} 
-//         onChange={(e) => this.handleInputDescriptionText(e.target.value)}
-        
-//         ></textarea>
-//         <div>
-//             <button id="edit_controls_name"
-//             className="confirm_description_update"
-//             onClick={this.updateTopicFields}
-//             >Update</button>
-//             <button id="edit_controls_description"
-//             className="cancel_name_update" 
-//             onClick={this.hideEditDescription}
-//             >Cancel</button>
-//         </div>
-//     {description}
-//     {id}
-//     {text}                    
-//     {updateThisTopicDescription}
-//     </div>
-//     :
-//     <span className="description_text">{text}</span>                    
-// }
