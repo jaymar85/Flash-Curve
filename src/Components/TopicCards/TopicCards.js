@@ -14,12 +14,10 @@ class TopicCards extends Component {
         }     
         this.addNewCard = this.addNewCard.bind(this);
         this.deleteThisCard = this.deleteThisCard.bind(this);
-        this.handleCardInput = this.handleCardInput.bind(this); 
-        
+        this.handleCardInput = this.handleCardInput.bind(this);         
     }
 
     componentDidMount() {
-        // console.log(this.props.match.params.topic_id)
         this.props.getUserCards(this.props.match.params.topic_id);
     }
 
@@ -29,20 +27,12 @@ class TopicCards extends Component {
         const {addCard} = this.props;
         addCard(this.props.match.params.topic_id, {description})
         this.setState({description: ''})
-            // .then(results => {
-            // console.log(description);
-            // this.setState({ cards: results.description });
-            // this.setState({ this.props.cards, this.state.description });
-            // this.props.cards(results.data);
-        // })
     }
 
     deleteThisCard(topic_id, card_id) {
         const { deleteCard } = this.props;
         deleteCard(topic_id, card_id);
     }
-    
-    updateThisCard() {}
 
     handleCardInput(value) {
         this.setState({ description: value});
@@ -51,27 +41,25 @@ class TopicCards extends Component {
     render() {
         // console.log(this.props.match.params.topic_id);
         const cardDisplay = this.props.cards.map((cards, index) => {
-            // console.log(cards);
             return (
-                <div key={index} className='flashcard'>  
-                    <h5>{cards.name}</h5>                    
+                <div key={index} className='flashcard'>                     
                     <p>{cards.description}</p>
                     <button 
+                    className="delete-btn"
                     onClick={() => this.deleteThisCard(this.props.match.params.topic_id, cards.card_id)}
                     type="button"
-                    className="delete-btn"
-                    >-</button>                                  
+                    >Delete</button>                                  
                 </div>
             )
         })
         // Need to change line 72 of title
         return (
-            <div className="hello">
+            <div className="flashcard-page-container">
                 <h1>Topic Cards {this.props.match.params.topic_id}</h1> 
-                <div>            
+                <div className="add-flashcard-container">            
                     <input 
-                    autoComplete="off"
                     className="add-description"
+                    autoComplete="off"
                     name="description"
                     type="text"
                     placeholder="Add a note"
@@ -83,6 +71,20 @@ class TopicCards extends Component {
                     className="add-btn"
                     onClick={this.addNewCard}>+</button> 
                 </div>
+                    <section>
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <h2>Jeremy</h2>
+                            </div>
+                            <div class="flip-card-back">
+                                <h1>John Doe</h1>
+                                <p>Architect & Engineer</p>
+                                <p>We love that guy</p>
+                            </div>
+                            </div>
+                        </div>
+                    </section>
                 {cardDisplay}
             </div>
         )
@@ -99,7 +101,6 @@ export default connect(mapStateToProps,
     {
         getUserCards,
         addCard,
-        deleteCard,
-        
+        deleteCard,   
     }
 )(TopicCards);

@@ -1,20 +1,20 @@
 import React from "react";
 import "./Header.scss";
 import logo from "../../assets/fc_logo1.png";
-import {Link, withRouter} from "react-router-dom";
-import {connect} from "react-redux";
-import {getUser, loginUser, logoutUser} from '../../Redux/reducers/userReducer';
+import { Link, withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import {getUser, loginUser, logoutUser} from "../../Redux/reducers/userReducer";
 
 class Header extends React.Component {
-    
     constructor() {
         super();
         this.state = {
-            firstName: '',
-            lastName: '',
-            username: '',
-            password: '',
-        }
+        firstName: "",
+        lastName: "",
+        username: "",
+        password: "",
+        navMenuStatus: "side-menu"
+        };
     }
 
     componentDidMount() {
@@ -22,77 +22,100 @@ class Header extends React.Component {
     }
 
     handleInput = e => {
-        // console.log(e.target.value);
-        this.setState({ [e.target.name]: e.target.value }); 
+        this.setState({ [e.target.name]: e.target.value });
     };
 
-    handleLogin = (e) => {
+    handleLogin = e => {
         e.preventDefault();
         const { username, password } = this.state;
-        // console.log(username);
-        const {loginUser} = this.props;
+        const { loginUser } = this.props;
         loginUser({
-            username,
-            password
-        })
-    }
+        username,
+        password
+        });
+    };
 
     handleLogout = () => {
-        this.props.logoutUser().then((res) => {
-            // console.dir(message)
-            // alert(res.value.data)
-            this.props.history.push('/')
-        })
-    }
+        this.props.logoutUser().then(res => {
+        this.props.history.push("/");
+        });
+    };
+
+    toggle = () => {
+        const { navMenuStatus } = this.state;
+        if (navMenuStatus === "side-menu-close" || navMenuStatus === "side-menu") {
+        this.setState({ navMenuStatus: "-menu-open" });
+        } else if (navMenuStatus === "side-menu-open") {
+        this.setState({ navMenuStatus: "side-menu-close" });
+        }
+    };
 
     render() {
-        const {firstName, username} = this.props;
-        // const alias = firstName ? firstName : 'Guest'; 
-        return (            
-                <nav className="nav">
-                    <div className="logo">
-                        <Link to="/"><img src={logo} alt="flash curve"/></Link>
-                    </div>
-                    {this.props.userId ? (
-                    <div id='logout-form'>
-                        <h4>Hello, {this.props.firstName} {this.props.lastName}</h4>                
-                        <button type='submit' onClick={this.handleLogout}>Log Out</button> 
-                    </div>
-                    ) : (
-                    <form name='login' autoComplete="off">
-                        <div className="loginForm">
-                            <div className="input-wrap">                           
-                                
-                                <div id="username">
-                                    <label></label>
-                                    <input 
-                                    className="add-username"
-                                    name="username" 
-                                    placeholder="Username"
-                                    onChange={this.handleInput}/>
-                                </div>
-                                
-                                <div id="password">
-                                    <label></label>
-                                    <input 
-                                    className="add-password"
-                                    name="password" 
-                                    type="password"
-                                    placeholder="Password"
-                                    onChange={this.handleInput}/>
-                                </div>
-                                
-                            </div>                            
-                            
-                            <div className="link-wrap">
-                                <button onClick={this.handleLogin}>Log In</button>
-                                <Link to="/register"><button>Sign Up</button></Link>
+        const { navMenuStatus } = this.state;
+        const { firstName, lastName } = this.props;
+        // const alias = firstName ? firstName : 'Guest';
+        return (
+        <div>
+            <nav className="nav">
+            <div className="logo">
+                <Link to="/">
+                <img src={logo} alt="flash curve" />
+                </Link>
+            </div>
+            <div className="terminator">
+                {this.props.userId ? (
+                <div className="logout-form">
+                    <h4 className="nav-greeting">Hello, {firstName} {lastName}</h4>
+                    <button 
+                    type="submit" 
+                    onClick={this.handleLogout}>Log Out</button>
+                </div>
+                ) : (
+                <form name="login" autoComplete="off">
+                    <div className="login-form">
+                        <div className="input-wrap">
+                            <div id="username">
+                            <input
+                                className="add-username"
+                                name="username"
+                                placeholder="Username"
+                                onChange={this.handleInput}
+                            />
+                            </div>
+
+                            <div id="password">
+                            <input
+                                className="add-password"
+                                name="password"
+                                type="password"
+                                placeholder="Password"
+                                onChange={this.handleInput}
+                            />
                             </div>
                         </div>
-                    </form>
-                    )}
-                </nav>          
-        )
+
+                        <div className="link-wrap">
+                            <button className="login_btn" onClick={this.handleLogin}>Log In</button>
+                            <Link to="/register">
+                            <button className="signup_btn">Sign Up</button>
+                            </Link>
+                        </div>
+                    </div>
+                </form>
+                )}
+                <div className={`${navMenuStatus} side-menu-routes`}></div>
+                <div className="hamburger_container">
+                <div>
+                    <button className="hamburger" onClick={this.toggle}>
+                    MENU
+                    <span>&#9776;</span>
+                    </button>
+                </div>
+                </div>
+            </div>
+            </nav>
+        </div>
+        );
     }
 }
 
@@ -102,12 +125,15 @@ const mapStateToProps = reduxState => {
         username: reduxState.userReducer.username,
         firstName: reduxState.userReducer.firstName,
         lastName: reduxState.userReducer.lastName
-    }
-}
+    };
+};
 
-export default withRouter(connect(mapStateToProps, {
-    getUser,
-    loginUser,
-    logoutUser
-}
+export default withRouter(
+    connect(
+    mapStateToProps,
+    {
+        getUser,
+        loginUser,
+        logoutUser
+    }
 )(Header));

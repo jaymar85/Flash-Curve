@@ -1,12 +1,6 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
 @import '../../styles/components';
-@import '../Register/Register.scss';
-
-$primaryButton: #18c4be;
-$hoverColor: #00f9ed;
-@mixin flex {
-    display: flex;
-    align-items: center;
-}
 
 .nav {
     width: 100vw;
@@ -14,23 +8,23 @@ $hoverColor: #00f9ed;
     background: rgb(3, 57, 80);
     @include flex();
     justify-content: space-between;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,.5);
+    box-shadow: $primaryShadow;
     .logo {
-        width: 20vw;
         margin-left: 1vw;
     }
 }
 
-.loginForm {
-    width: 50vw;
+.login-form {
+    // height: 10vh;
+    width: 15vw;
     @include flex();
-    justify-content: flex-end;
     color: white;
+    flex-direction: column;
 }
 
 .input-wrap {
     width: 16vw;
-    height: 10vh;
+    height: 5vh;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -41,10 +35,9 @@ $hoverColor: #00f9ed;
 }
 
 .add-username, .add-password {
-        // margin: 0 auto;
-        border: solid #18c4be; 
-        border:solid 1px #ccc;
-        border-radius: 3px;
+    border: solid #18c4be; 
+    border:solid 1px #ccc;
+    border-radius: 3px;
 }
 
 .link-wrap  {
@@ -56,13 +49,139 @@ $hoverColor: #00f9ed;
     }
 }
 
-#logout-form {
+.logout-form {
     width: 24vw;
     height: 5vh;
     color: white;
     @include flex();
-    justify-content: space-evenly;  
+    justify-content: space-evenly; 
     button {
         @extend .submit-btn;
     }
 }
+
+////////// Menu Features ////////////
+.hamburger_container {
+    display: none;
+    // width: 30vw;
+    @include flex();
+    justify-content: flex-end;
+    margin-right: 10px;
+}
+
+.hamburger {
+    display: none;
+    // justify-content: center;
+    // align-items: center;
+    border: 0;
+    border-radius: 5px;
+    padding: 13px;
+    font-size: 15px;
+    color: $fontColor;
+    // background: #fed136;
+}
+
+// div.side-menu, .side-menu-open, .side-menu-close  {
+//     // width: 100vw;
+//     // height: 30vh;
+//     // background: black;
+//     position: relative;
+//     display: inline-block;
+//     top: 0;
+//     left: 0;
+//     // box-shadow: 3px 3px 3px 2px #212529;
+//     transform: translateY(-810px);
+// }
+
+// .side-menu-open {
+//     display: flex;
+//     animation: open .5s forwards ease;
+// cursor: pointer;
+// animation-name: open;
+// animation-duration: .5s;
+// animation-fill-mode: forwards;
+// animation-timing-function: linear;
+// z-index: -1;
+// }
+// .side-menu-close {
+//     display: flex;
+//     animation: close .5s forwards ease;
+//     // cursor: pointer;
+//     // z-index: -1;
+// }
+
+// @keyframes open {
+//     to {
+//         transform: translateX(0px);
+//         transform: translateY(0px);
+//         // z-index: -1;
+//     }
+// }
+
+// @keyframes close {
+//     from {
+//         transform: translateX(0px);
+//         transform: translateY(0px);
+//         // z-index: -1;
+//     }
+//     to {
+//         transform: translateX(300px);
+//         transform: translateY(-600px);
+//         // z-index: -1;
+//     }
+// }
+
+@media (max-width: 1020px) {
+    // div.side-menu, .side-menu-open, .side-menu-close {
+    //     width: 30vw;
+    //     height: 40vh;
+    // }
+    .hamburger {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: $primaryColor;  
+    }
+    .login-form, .add-username, .add-password, .login_btn, .signup_btn {
+        display: none;
+    }
+    #logout-form {
+        display: none;
+    }
+    // div .side-menu-open .side-menu-routes {
+    //     font-family: 'Montserrat', sans-serif;
+    //     color:white;
+    // }
+}
+
+@media (max-width: 800px) {
+    .nav-greeting {
+        display: none;
+    }
+}
+
+@media (max-width: 395px) {
+    div.side-menu, .side-menu-open, .side-menu-close {
+        width: 60vw;
+        height: 40vh;
+    }
+    .hamburger {
+        display: block;
+        background: $primaryColor;
+        margin-top: 13px;   
+    }
+}
+
+@media (max-width: 392px) {
+    .nav {}
+    .hamburger {
+        display: none;
+    }
+}
+
+@media (min-width: 990px) {
+    .side-menu-open {
+        display: none;
+    }
+}
+

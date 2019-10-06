@@ -52,7 +52,7 @@ class EditTopic extends Component {
         const {id, updateThisTopicName, updateThisTopicDescription} = this.props;
         updateThisTopicName(id, text);
         updateThisTopicDescription(id, text);
-        // hideEditName(); 
+        hideEditName(); 
         hideEditDescription();
     }
 
@@ -63,13 +63,13 @@ class EditTopic extends Component {
         return (                 
         <div className="topics_container" onClick={this.hideTopicMenu}>
                     <div className="topic_hamburger">
-                        <span className="hamburger" onClick={this.toggleTopicMenu}>:::</span>
+                        <span className="topic_hamburger_menu" onClick={this.toggleTopicMenu}>:::</span>
                         <Link className="to_flashcards" to={`/topics/${id}`}>Flash Cards</Link>
 
                         <div className="hamburger_menu" style={ {display: showTopicMenu ? "flex" : "none"} }>
                             <span onClick={this.showEditName}>Edit Name</span>     
                             
-                            <span onClick={this.showEditDescription}>Edit Note</span>     
+                            <span onClick={this.showEditDescription}>Edit Goal</span>     
                             
                             <span onClick={() => this.props.deleteThisTopic(id)}>Delete</span>
                         </div>
@@ -104,7 +104,7 @@ class EditTopic extends Component {
 
                 
                 {   editDescription ?
-                    <div>
+                    <div className="description_input_div">
                         <input 
                         className="description_textbox" 
                         name="newDescription" 

@@ -1,17 +1,17 @@
 @import '../../styles/variables';
+@import '../../styles/mixins';
+@import '../../styles/components';
 
 .body-container {
     width: 100vw;
     height: 70vh;
-    display:flex;
-    justify-content: center;
-    align-items: center;
+    @include flexCenter();
 }
 
 #color-top {
     width: 90vw;
     height: 1vh;
-    background: $primaryButton;
+    background: $primaryColor;
     display: flex;
     justify-content: center; 
     align-items: flex-start;
@@ -20,7 +20,5 @@
 .body-logo {
     width: 90vw;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flexCenter();
 }

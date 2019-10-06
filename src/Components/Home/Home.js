@@ -24,10 +24,10 @@ class Home extends Component {
     }
 }
 
-const maptStateToProps = reduxState => {
+const mapStateToProps = reduxState => {
     return {
         userId: reduxState.userReducer.userId
     }
 }
 
-export default connect(maptStateToProps)(Home);
+export default connect(mapStateToProps)(Home);

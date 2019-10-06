@@ -5,18 +5,16 @@ import Header from './Components/Header/Header';
 // import Footer from './Components/Footer/Footer';
 
 class App extends React.Component {
-  constructor(){
+  constructor() {
     super();
-    this.state = {
-    };
+    this.state = {};
   }
 
   render() {
-    const {user} = this.state;
+    // const {user} = this.state;
     return (
       <div className="App">
-        <Header />
-        
+        <Header />        
         {routes}
       </div>        
     );

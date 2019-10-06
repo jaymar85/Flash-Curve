@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './UserLanding.scss'
-import EditTopic from './EditTopic'
+import EditTopic from './EditTopic/EditTopic'
 // import {Link} from "react-router-dom";
 import {connect} from 'react-redux';
 import {accessUserTopics, addTopic, deleteTopic, updateTopicName, updateTopicDescription} from '../../Redux/reducers/cardReducer';
@@ -22,7 +22,7 @@ class UserLanding extends Component {
     }
 
     componentDidMount() {
-        this.props.accessUserTopics();
+        this.props.accessUserTopics(); // ** debug ** have to click refresh for topics to show
     }
 
     addNewTopic() {
@@ -80,11 +80,11 @@ class UserLanding extends Component {
         return (                      
         <div className="topic-content-section">   
             <div className="add-container">
-                <h3>Add a study topic</h3>
+                <h3 id="add-title">Add a study topic</h3>
                     <form className="add-form" name="add_topic" autoComplete="off">
                         <div className="input-wrapper">
                             <div className="name-input">
-                                <span/>
+                                
                                 <input 
                                 className="add-name"
                                 name="name"
@@ -102,8 +102,10 @@ class UserLanding extends Component {
                                 onChange={this.handleTopicInput}
                                 />
                             </div>
-                        </div>                        
-                            <button className="add-btn" onClick={this.addNewTopic}>+</button>                        
+                        </div>
+                        <div className="add-btn-wrapper">                     
+                        <button className="add-btn" onClick={this.addNewTopic}>+</button>  
+                        </div>                         
                     </form>
                 </div>
             

@@ -1,13 +1,15 @@
 @import './variables';
+@import './mixins';
 
 .submit-btn {
     color: white;
-    background: $primaryButton;
-    border: solid $primaryButton;
+    background: $primaryColor;
+    border: solid $primaryColor;
     border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
     text-decoration: none;
-    cursor: pointer;   
     &:hover {
+        cursor: pointer;   
         background: $hoverColor;
         border: solid $hoverColor;
     }  
