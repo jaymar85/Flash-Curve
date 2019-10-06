@@ -34,7 +34,7 @@
     position: absolute;
     top: 14px;
     right: 14px;
-    font-size: px;
+    // font-size: px;
     cursor: pointer;
 }
 .hamburger_menu {
@@ -86,4 +86,28 @@
 #confirm_name_update, #cancel_name_update, #confirm_description_update, #cancel_description_update {
     @extend .submit-btn;
     margin: 5px;       
+}
+
+@media (max-width: 425px) {
+    .topics_container {
+        padding: 10px;
+        margin-bottom: 10px;
+        min-height: 50px;
+    }   
+}
+
+@media (max-width: 375px) {
+    .topics_container {
+        padding: 10px;
+        margin-bottom: 10px;
+        min-height: 50px;
+    }   
+}
+
+@media (max-width: 320px) {
+    .topics_container {
+        padding: 10px;
+        margin-bottom: 8px;
+        min-height: 50px;
+    }   
 }

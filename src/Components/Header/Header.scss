@@ -163,7 +163,7 @@
     }
 }
 
-@media (max-width: 395px) {
+@media (max-width: 425px) {
     // div.side-menu, .side-menu-open, .side-menu-close {
     //     width: 60vw;
     //     height: 40vh;
@@ -175,10 +175,24 @@
     }
 }
 
-@media (max-width: 392px) {
-    .nav {}
+@media (max-width: 375px) {
     .hamburger {
         display: none;
+    }
+    .nav {
+        @include flexCenter();
+    }
+    .logo {
+
+    }
+}
+
+@media (max-width: 320px) {
+    // .nav {
+    //     @include flexCenter();
+    // }
+    .logo {
+
     }
 }
 

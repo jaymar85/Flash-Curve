@@ -15,7 +15,7 @@
 }
 
 .add-container {
-    height: 18vh;
+    // height: 18vh;
     background-color: white;
     border: 1px solid $primaryColor;
     border-radius: 3px;
@@ -78,15 +78,83 @@ h3 {
 
 // >>>>>>>>>>>EditTopics>>>>>>>>
 
-@media (max-width: 1020px) {
+@media (max-width: 768px) {
+    .topic-content-section {
+        width: 80vw;
+    }
     .add-container {
-        height: 13vh;
+        // height: 13vh;
     }
     #add-title {
-        display: none;
+        // display: none;
     }
 }
 
-@media (max-width: 800) {
+@media (max-width: 425px) {
+    .topic-content-section {
+        width: 100vw;
+        // height: 100vh;
+        // margin: 0 auto;
+        box-sizing: border-box;
+        padding: 36px;
+        display: flex;
+        flex-direction: column;
+        // background: lightgrey;
+        margin-top: 3px;
+    }
+    .add-container {
+        margin-bottom: 20px;
+    }
+    .add-name {
+        width: 62vw;
+    }
+    .add-description {
+        width: 62vw;
+    }
+}
 
+@media (max-width: 375px) {
+    .topic-content-section {
+        width: 100vw;
+        // height: 100vh;
+        // margin: 0 auto;
+        box-sizing: border-box;
+        padding: 25px;
+        display: flex;
+        flex-direction: column;
+        // background: lightgrey;
+        margin-top: 3px;
+    }
+    .add-container {
+        margin-bottom: 15px;
+    }
+    .add-name {
+        width: 60vw;
+    }
+    .add-description {
+        width: 60vw;
+    }
+}
+
+@media (max-width: 320px) {
+    .topic-content-section {
+        width: 100vw;
+        // height: 100vh;
+        // margin: 0 auto;
+        box-sizing: border-box;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        // background: lightgrey;
+        margin-top: 3px;
+    }
+    .add-container {
+        margin-bottom: 10px;
+    }
+    .add-name {
+        width: 60vw;
+    }
+    .add-description {
+        width: 60vw;
+    }
 }
