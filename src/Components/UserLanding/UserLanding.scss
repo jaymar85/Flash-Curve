@@ -80,13 +80,19 @@ h3 {
 
 @media (max-width: 768px) {
     .topic-content-section {
-        width: 80vw;
+        width: 100vw;
     }
     .add-container {
         // height: 13vh;
     }
     #add-title {
         // display: none;
+    }
+    .add-name {
+        width: 62vw;
+    }
+    .add-description {
+        width: 62vw;
     }
 }
 
@@ -96,7 +102,7 @@ h3 {
         // height: 100vh;
         // margin: 0 auto;
         box-sizing: border-box;
-        padding: 36px;
+        padding: 24px;
         display: flex;
         flex-direction: column;
         // background: lightgrey;
@@ -119,7 +125,7 @@ h3 {
         // height: 100vh;
         // margin: 0 auto;
         box-sizing: border-box;
-        padding: 25px;
+        padding: 18px;
         display: flex;
         flex-direction: column;
         // background: lightgrey;
@@ -146,7 +152,7 @@ h3 {
         display: flex;
         flex-direction: column;
         // background: lightgrey;
-        margin-top: 3px;
+        // margin-top: 2px;
     }
     .add-container {
         margin-bottom: 10px;
