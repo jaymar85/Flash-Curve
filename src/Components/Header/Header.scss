@@ -50,7 +50,7 @@
 }
 
 .logout-form {
-    width: 24vw;
+    width: 22vw;
     height: 5vh;
     color: white;
     @include flex();
@@ -145,7 +145,7 @@
     .login-form, .add-username, .add-password, .login_btn, .signup_btn {
         display: none;
     }
-    #logout-form {
+    .logout-form {
         display: none;
     }
     // div .side-menu-open .side-menu-routes {
@@ -154,17 +154,20 @@
     // }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 768px) {
+    #logout-form {
+        display: none;
+    }
     .nav-greeting {
         display: none;
     }
 }
 
 @media (max-width: 395px) {
-    div.side-menu, .side-menu-open, .side-menu-close {
-        width: 60vw;
-        height: 40vh;
-    }
+    // div.side-menu, .side-menu-open, .side-menu-close {
+    //     width: 60vw;
+    //     height: 40vh;
+    // }
     .hamburger {
         display: block;
         background: $primaryColor;
