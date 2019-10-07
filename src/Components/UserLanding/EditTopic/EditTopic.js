@@ -12,8 +12,8 @@ class EditTopic extends Component {
             newName: '',
             newDescription: ''
         }
-
     }
+
     ////////// Show/Hide Name //////////
     showEditName = () => {
         this.setState({editName: true, showTopicMenu: false});
@@ -46,19 +46,28 @@ class EditTopic extends Component {
     handleInputDescriptionText(e) {
         this.setState({[e.target.name]: e.target.value})
     }
-    ////////// Update  //////////
-    updateTopicFields = () => {
-        const {newName, newDescription} = this.state;
-        console.log(newDescription)
-        const {id, updateThisTopicName, updateThisTopicDescription} = this.props;
-        if(newName !== ''){
-            updateThisTopicName(id, newName);
-        }else if(newDescription !== ''){
-            updateThisTopicDescription(id, newDescription);
-        }
+    ////////// Confirm Name Update //////////
+    updateTopicFieldsName = () => {
+        const {newName} = this.state;
+        const {id, updateThisTopicName} = this.props;
+        // if(newName !== ''){
+        //     updateThisTopicName(id, newName);
+        // }else if(newDescription !== ''){
+        //     updateThisTopicDescription(id, newDescription);
+        // }
+        updateThisTopicName(id, newName);
         this.hideEditName(); // putting text does not work
-        this.hideEditDescription();
+        // this.props.accessUserTopics();
     }
+        ////////// Confirm Goal Update //////////
+    updateTopicFieldsGoal = () => {
+        const {newDescription} = this.state;
+        const {id, updateThisTopicDescription} = this.props;
+        updateThisTopicDescription(id, newDescription);
+        this.hideEditDescription(); // putting text does not work
+        // this.props.accessUserTopics();
+    }
+
 
     render() {
         const {editName, editDescription, showTopicMenu, text} = this.state;
@@ -90,7 +99,7 @@ class EditTopic extends Component {
 
                         <div className="edit_name_btn">
                             <button id="confirm_name_update"
-                            onClick={this.updateTopicFields}
+                            onClick={this.updateTopicFieldsName}
                             >Update</button>
                             <button id="cancel_name_update" 
                             onClick={this.hideEditName}
@@ -119,7 +128,7 @@ class EditTopic extends Component {
                         
                         <div className="edit_description_btn">
                             <button id="confirm_description_update"
-                            onClick={this.updateTopicFields}
+                            onClick={this.updateTopicFieldsGoal}
                             >Update</button>
                             <button id="cancel_description_update"
                             onClick={this.hideEditDescription}

@@ -42,9 +42,6 @@ class UserLanding extends Component {
         })
     }
     updateThisTopicName(id, newName) { 
-        // console.log('hit')
-        // console.log(id)
-        // console.log(newName)
         // const {name} = this.state;
         const {updateTopicName} = this.props;
         updateTopicName({id, newName}).then(results => {
@@ -52,8 +49,6 @@ class UserLanding extends Component {
         })
     }
     updateThisTopicDescription(id, newDescription) {
-        console.log(id)
-        console.log(newDescription)
         // const {description} = this.state;
         const {updateTopicDescription} = this.props;
         updateTopicDescription({id, newDescription}).then(results => {
@@ -77,6 +72,7 @@ class UserLanding extends Component {
                         updateThisTopicName={this.updateThisTopicName}
                         updateThisTopicDescription={this.updateThisTopicDescription}
                         deleteThisTopic={this.deleteThisTopic}
+                        
                     />
                 </div>              
             )
@@ -135,4 +131,3 @@ export default connect(mapStateToProps,
         updateTopicDescription
     }
 )(UserLanding);
-

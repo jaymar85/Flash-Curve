@@ -42,17 +42,24 @@ class TopicCards extends Component {
         // console.log(this.props.match.params.topic_id);
         const cardDisplay = this.props.cards.map((cards, index) => {
             return (
-                <div key={index} className='flashcard'>                     
-                    <p>{cards.description}</p>
-                    <button 
-                    className="delete-btn"
-                    onClick={() => this.deleteThisCard(this.props.match.params.topic_id, cards.card_id)}
-                    type="button"
-                    >Delete</button>                                  
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div key={index} className='flashcard'>                     
+                                <p>{cards.description}</p>
+                                <button 
+                                className="delete-btn"
+                                onClick={() => this.deleteThisCard(this.props.match.params.topic_id, cards.card_id)}
+                                type="button"
+                                >Delete</button>                                  
+                            </div>
+
+                            <div class="flip-card-back"></div>
+                        </div>
+                    </div>
                 </div>
             )
         })
-        // Need to change line 72 of title
         return (
             <div className="flashcard-page-container">
                 <h1>Topic Cards {this.props.match.params.topic_id}</h1> 
@@ -71,20 +78,6 @@ class TopicCards extends Component {
                     className="add-btn"
                     onClick={this.addNewCard}>+</button> 
                 </div>
-                    <section>
-                        <div class="flip-card">
-                            <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <h2>Jeremy</h2>
-                            </div>
-                            <div class="flip-card-back">
-                                <h1>John Doe</h1>
-                                <p>Architect & Engineer</p>
-                                <p>We love that guy</p>
-                            </div>
-                            </div>
-                        </div>
-                    </section>
                 {cardDisplay}
             </div>
         )

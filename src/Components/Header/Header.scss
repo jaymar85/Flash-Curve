@@ -16,14 +16,14 @@
 
 .login-form {
     // height: 10vh;
-    width: 15vw;
+    // width: 15vw;
     @include flex();
     color: white;
     flex-direction: column;
 }
 
 .input-wrap {
-    width: 16vw;
+    width: 8vw;
     height: 5vh;
     display: flex;
     align-items: center;

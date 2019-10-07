@@ -25,7 +25,7 @@ export function accessUserTopics() {
         payload: axios.get('/api/topics')
     }
 }
-export function updateTopicName(name) {
+export function updateTopicName(name) { // parameter name is an object
     // console.log(name)
     return {
         type: UPDATE_TOPIC_NAME,
@@ -92,18 +92,18 @@ export default function Reducer(state=initialState, action) {
                 topics: payload.data
             };
         case `${UPDATE_TOPIC_NAME}_FULFILLED`:
+            console.log(payload.data);
             return {
                 ...state,
                 topics: payload.data
             };
         case `${UPDATE_TOPIC_DESCRIPTION}_FULFILLED`:
-            // console.log(payload.data);
+            console.log(payload.data);
             return {
                 ...state,
                 topics: payload.data
             };
         case `${ADD_TOPIC}_FULFILLED`:
-            // console.log(payload.data);
             return {
                 ...state,
                 topics: payload.data
