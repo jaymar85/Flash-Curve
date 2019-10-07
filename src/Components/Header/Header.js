@@ -62,10 +62,18 @@ class Header extends React.Component {
                 <img src={logo} alt="flash curve" />
                 </Link>
             </div>
+
             <div className="terminator">
                 {this.props.userId ? (
                 <div className="logout-form">
                     <h4 className="nav-greeting">Hello, {firstName} {lastName}</h4>
+
+                    <div className="to-profile">
+                        <Link to="/user/profile">
+                            <h4>Profile</h4>
+                        </Link>
+                    </div>
+
                     <button 
                     type="submit" 
                     onClick={this.handleLogout}>Log Out</button>

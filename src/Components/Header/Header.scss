@@ -50,7 +50,7 @@
 }
 
 .logout-form {
-    width: 22vw;
+    width: 25vw;
     height: 5vh;
     color: white;
     @include flex();
@@ -58,6 +58,12 @@
     button {
         @extend .submit-btn;
     }
+}
+
+.to-profile h4 {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 ////////// Menu Features ////////////

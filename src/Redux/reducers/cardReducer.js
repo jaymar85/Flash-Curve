@@ -3,7 +3,8 @@ import axios from 'axios';
 // Initial State
 const initialState = {
     topics: [],
-    cards: []
+    cards: [],
+    views: []
 }
 
 // TOPIC Action types
@@ -17,6 +18,10 @@ const GET_USER_CARDS = 'GET_USER_CARDS';
 const UPDATE_CARD = 'UPDATE_CARD';
 const ADD_CARD = 'ADD_CARD';
 const DELETE_CARD = 'DELETE_CARD';
+// VIEWS
+const GET_USER_VIEWS = 'GET_USER_VIEWS';
+const ADD_VIEW = 'ADD_VIEW';
+const RESET_VIEWS = 'RESET_VIEWS';
 
 // TOPIC functions
 export function accessUserTopics() {
@@ -79,6 +84,25 @@ export function deleteCard(topic_id, card_id) {
         payload: axios.delete(`/api/flashcard/${card_id}/${topic_id}`)
     }
 }
+// VIEWS
+export function getViews() {
+    return {
+        type: GET_USER_VIEWS,
+        payload: axios.get(`/api/views`)
+    }
+}
+export function addView(topic_id) {
+    return {
+        type: ADD_VIEW,
+        payload: axios.post(`/api/views/${topic_id}`)
+    }
+}
+export function resetViews() {
+    return {
+        type: RESET_VIEWS,
+        payload: axios.delete('/api/reset_views')
+    }
+}
 
 // Reducer
 export default function Reducer(state=initialState, action) {
@@ -136,6 +160,25 @@ export default function Reducer(state=initialState, action) {
             ...state,
             cards: payload.data
             };
+
+        /////////// VIEWS cases /////////////
+        case `${GET_USER_VIEWS}_FULFILLED`:
+            console.log(payload.data);
+            return {
+                ...state,
+                views: payload.data
+            }
+        case `${ADD_VIEW}_FULFILLED`:
+            console.log(payload.data);
+            return {
+                ...state,
+                views: payload.data
+            }
+        case `${RESET_VIEWS}_FULFILLED`:
+            return {
+                ...state,
+                views: []
+            }
         default: return state;
     }
 }

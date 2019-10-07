@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './TopicCards.scss'
 // import {Link} from "react-router-dom";
 import {connect} from 'react-redux';
-import {getUserCards, addCard , deleteCard, } from '../../Redux/reducers/cardReducer';
+import {getUserCards, addCard , deleteCard, addView} from '../../Redux/reducers/cardReducer';
 
 class TopicCards extends Component {
 
@@ -19,6 +19,7 @@ class TopicCards extends Component {
 
     componentDidMount() {
         this.props.getUserCards(this.props.match.params.topic_id);
+        this.props.addView(this.props.match.params.topic_id);
     }
 
     addNewCard() {        
@@ -94,6 +95,7 @@ export default connect(mapStateToProps,
     {
         getUserCards,
         addCard,
-        deleteCard,   
+        deleteCard, 
+        addView  
     }
 )(TopicCards);

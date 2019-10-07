@@ -8,6 +8,7 @@ const session = require("express-session");
 const authController = require("./controllers/authController");
 const cardController = require("./controllers/cardController");
 const topicController = require("./controllers/topicController")
+const viewsController = require("./controllers/viewsController");
 
 const {CONNECTION_STRING, SERVER_PORT,  SESSION_SECRET} = process.env;
 
@@ -46,6 +47,10 @@ app.get('/api/cards/card_id', cardController.getFlashcard);
 app.post('/api/flashcard/:topic_id', cardController.addFlashcard);
 app.put('/api/flashcard', cardController.editFlashcard);
 app.delete('/api/flashcard/:card_id/:topic_id', cardController.deleteFlashcard);
+// View Data
+app.get('/api/views/', viewsController.getDataView);
+app.post('/api/views/:topic_id', viewsController.addViews);
+app.delete('/api/reset_views', viewsController.theDestroyer);
 
 app.listen(SERVER_PORT, () => {
     console.log(`Server listening on ${SERVER_PORT}`)
