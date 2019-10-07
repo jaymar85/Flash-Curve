@@ -35,7 +35,7 @@ class EditTopic extends Component {
     }
     hideTopicMenu = () => {
         const {showTopicMenu} = this.state;
-        if(showTopicMenu === true) {
+        if (showTopicMenu === true) {
             this.setState({showTopicMenu: false});
         }
     }
@@ -44,16 +44,20 @@ class EditTopic extends Component {
         this.setState({[e.target.name]: e.target.value})
     }
     handleInputDescriptionText(e) {
-        this.setState({[e.target.description]: e.target.value})
+        this.setState({[e.target.name]: e.target.value})
     }
     ////////// Update  //////////
     updateTopicFields = () => {
-        const {text, hideEditName, hideEditDescription} = this.state;
+        const {newName, newDescription} = this.state;
+        console.log(newDescription)
         const {id, updateThisTopicName, updateThisTopicDescription} = this.props;
-        updateThisTopicName(id, text);
-        updateThisTopicDescription(id, text);
-        hideEditName(); 
-        hideEditDescription();
+        if(newName !== ''){
+            updateThisTopicName(id, newName);
+        }else if(newDescription !== ''){
+            updateThisTopicDescription(id, newDescription);
+        }
+        this.hideEditName(); // putting text does not work
+        this.hideEditDescription();
     }
 
     render() {
@@ -76,12 +80,14 @@ class EditTopic extends Component {
                     </div>
                 {   editName ?
                     <div className="name_input_div">
+                        
                         <input 
                         className="name_textbox" 
                         name="newName" 
                         onChange={(e) => this.handleInputNameText(e)}
                         defaultValue={name}
                         ></input>
+
                         <div className="edit_name_btn">
                             <button id="confirm_name_update"
                             onClick={this.updateTopicFields}
@@ -97,20 +103,20 @@ class EditTopic extends Component {
                     :
                     <div className="name_text">
                     {name}                    
-                    <span >{text}</span>
+                    <span>{text}</span>
                     </div>
                 }
-                
 
-                
                 {   editDescription ?
                     <div className="description_input_div">
+                        
                         <input 
                         className="description_textbox" 
                         name="newDescription" 
                         onChange={(e) => this.handleInputDescriptionText(e)}
                         defaultValue={description}
                         ></input>
+                        
                         <div className="edit_description_btn">
                             <button id="confirm_description_update"
                             onClick={this.updateTopicFields}
@@ -126,7 +132,7 @@ class EditTopic extends Component {
                     :
                     <div className="description_text">
                     {description}
-                    <span >{text}</span> 
+                    <span>{text}</span> 
                     </div>                   
                 }               
         </div>           

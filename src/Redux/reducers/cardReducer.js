@@ -25,16 +25,17 @@ export function accessUserTopics() {
         payload: axios.get('/api/topics')
     }
 }
-export function updateTopicName() {
+export function updateTopicName(name) {
+    // console.log(name)
     return {
         type: UPDATE_TOPIC_NAME,
-        payload: axios.put('/api/topic_name')
+        payload: axios.put('/api/topic_name', name)
     }
 }
-export function updateTopicDescription() {
+export function updateTopicDescription(description) {
     return {
         type: UPDATE_TOPIC_DESCRIPTION,
-        payload: axios.put('/api/topic_description')
+        payload: axios.put('/api/topic_description', description)
     }
 }
 export function addTopic(newCase) { 

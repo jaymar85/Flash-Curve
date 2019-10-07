@@ -20,15 +20,16 @@ module.exports = {
             });
     },
     editTopicName: async (req, res) => {
-        const {topic_id, name} = req.body;
+        // console.log(req.body)
+        const {id, newName} = req.body;
         const db = req.app.get('db');
-        const update = await db.topic.edit_topic_name([topic_id, name]);
+        const update = await db.topic.edit_topic_name([id, newName]);
         return res.status(200).send(update);
     },
     editTopicDescription: async (req, res) => {
-        const {topic_id, description} = req.body;
+        const {id, newDescription} = req.body;
         const db = req.app.get('db');
-        const update = await db.topic.edit_topic_description([topic_id, description]);
+        const update = await db.topic.edit_topic_description([id, newDescription]);
         return res.status(200).send(update);
     },
     deleteTopic: async (req, res) => {

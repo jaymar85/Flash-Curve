@@ -41,17 +41,22 @@ class UserLanding extends Component {
             this.setState({topics: results.data});
         })
     }
-    updateThisTopicName() { 
-        const {name} = this.state;
+    updateThisTopicName(id, newName) { 
+        // console.log('hit')
+        // console.log(id)
+        // console.log(newName)
+        // const {name} = this.state;
         const {updateTopicName} = this.props;
-        updateTopicName({name}).then(results => {
+        updateTopicName({id, newName}).then(results => {
             this.setState({topics: results.data});
         })
     }
-    updateThisTopicDescription() {
-        const {description} = this.state;
+    updateThisTopicDescription(id, newDescription) {
+        console.log(id)
+        console.log(newDescription)
+        // const {description} = this.state;
         const {updateTopicDescription} = this.props;
-        updateTopicDescription({description}).then(results => {
+        updateTopicDescription({id, newDescription}).then(results => {
             this.setState({topics: results.data});
         })
     }
