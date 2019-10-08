@@ -168,6 +168,11 @@ export default function Reducer(state=initialState, action) {
                 ...state,
                 views: payload.data
             }
+        // case `${GET_USER_VIEWS}_PENDING`:
+        //         return {
+        //             ...state,
+        //             views: 'LOADING...'
+        //         }
         case `${ADD_VIEW}_FULFILLED`:
             console.log(payload.data);
             return {

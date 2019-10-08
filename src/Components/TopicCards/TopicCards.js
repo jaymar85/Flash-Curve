@@ -43,9 +43,9 @@ class TopicCards extends Component {
         // console.log(this.props.match.params.topic_id);
         const cardDisplay = this.props.cards.map((cards, index) => {
             return (
-                <div class="flip-card">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
+                <div className="flip-card-container">
+                    <div className="flip-card-inner">
+                        <div className="flip-card-front">
                             <div key={index} className='flashcard'>                     
                                 <p>{cards.description}</p>
                                 <button 

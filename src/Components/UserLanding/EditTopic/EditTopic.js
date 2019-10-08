@@ -56,7 +56,7 @@ class EditTopic extends Component {
         //     updateThisTopicDescription(id, newDescription);
         // }
         updateThisTopicName(id, newName);
-        this.hideEditName(); // putting text does not work
+        this.hideEditName(); 
         // this.props.accessUserTopics();
     }
         ////////// Confirm Goal Update //////////
@@ -64,7 +64,7 @@ class EditTopic extends Component {
         const {newDescription} = this.state;
         const {id, updateThisTopicDescription} = this.props;
         updateThisTopicDescription(id, newDescription);
-        this.hideEditDescription(); // putting text does not work
+        this.hideEditDescription(); 
         // this.props.accessUserTopics();
     }
 

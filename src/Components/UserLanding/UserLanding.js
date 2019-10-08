@@ -22,7 +22,7 @@ class UserLanding extends Component {
     }
 
     componentDidMount() {
-        this.props.accessUserTopics(); // ** debug ** have to click refresh for topics to show
+        this.props.accessUserTopics(); 
     }
 
     addNewTopic() {
@@ -72,7 +72,6 @@ class UserLanding extends Component {
                         updateThisTopicName={this.updateThisTopicName}
                         updateThisTopicDescription={this.updateThisTopicDescription}
                         deleteThisTopic={this.deleteThisTopic}
-                        
                     />
                 </div>              
             )
