@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const massive = require("massive");
 const session = require("express-session");
-// const path = require('path');
+const path = require('path');
 // Controllers
 const authController = require("./controllers/authController");
 const cardController = require("./controllers/cardController");
@@ -53,9 +53,9 @@ app.get('/api/views/', viewsController.getDataView);
 app.post('/api/views/:topic_id', viewsController.addViews);
 app.delete('/api/reset_views', viewsController.theDestroyer);
 
-// app.get('*', (req, res)=>{
-//     res.sendFile(path.join(__dirname, '../build/index.html'));
-// });
+app.get('*', (req, res)=>{
+    res.sendFile(path.join(__dirname, '../build/index.html'));
+});
 
 app.listen(SERVER_PORT, () => {
     console.log(`Server listening on ${SERVER_PORT}`)
